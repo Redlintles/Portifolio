@@ -219,15 +219,15 @@ ul {
 }
 
 #banner-1 {
-  background-image: url("../../img/banner-1.jpg");
+  background-image: url("../img/banner-1.jpg");
 }
 
 #banner-2 {
-  background-image: url("../../img/banner-2.jpg");
+  background-image: url("../img/banner-2.jpg");
 }
 
 #banner-3 {
-  background-image: url("../../img/banner-3.jpg");
+  background-image: url("../img/banner-3.jpg");
 }
 
 .banners {
@@ -251,9 +251,10 @@ ul {
   justify-content: space-between;
   flex-direction: column;
   padding: 2rem 0;
+  flex-wrap: wrap;
 }
 .products-grid h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
 }
 @media (max-width: 425px) {
@@ -266,6 +267,7 @@ ul {
   justify-content: space-between;
   padding: 2rem 0;
   flex-direction: row;
+  width: 100%;
 }
 @media (max-width: 425px) {
   .products-grid-container {
@@ -275,7 +277,7 @@ ul {
 }
 
 .deal-container {
-  background-image: url("../../img/deal_headset.png");
+  background-image: url("../img/deal_headset.png");
   background-repeat: no-repeat;
   background-position-x: 95%;
   background-position-y: 1rem;
