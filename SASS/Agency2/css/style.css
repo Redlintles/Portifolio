@@ -65,7 +65,7 @@ a {
 
 .banner {
   height: 800px;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../img/office.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/office.jpg");
   background-position: center;
   background-size: cover;
   display: flex;
@@ -195,7 +195,7 @@ a {
 }
 .projects-grid-container #first-job {
   grid-row: 1/3;
-  background: url("../../img/job1.jpg") no-repeat;
+  background: url("../img/job1.jpg") no-repeat;
   width: 100%;
   height: 100%;
   background-size: cover;
@@ -246,28 +246,28 @@ a {
   }
 }
 .projects-grid-container #job-2 {
-  background: url("../../img/job2.jpg") no-repeat;
+  background: url("../img/job2.jpg") no-repeat;
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
 }
 .projects-grid-container #job-3 {
-  background: url("../../img/job3.jpg") no-repeat;
+  background: url("../img/job3.jpg") no-repeat;
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
 }
 .projects-grid-container #job-4 {
-  background: url("../../img/job4.jpg") no-repeat;
+  background: url("../img/job4.jpg") no-repeat;
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
 }
 .projects-grid-container #job-5 {
-  background: url("../../img/job5.jpg") no-repeat;
+  background: url("../img/job5.jpg") no-repeat;
   width: 100%;
   height: 100%;
   background-size: cover;
@@ -285,6 +285,7 @@ a {
 .footer h5 {
   font-size: 1.5rem;
   color: #fff;
+  margin-bottom: 1rem;
 }
 @media (max-width: 425px) {
   .footer h5 {
