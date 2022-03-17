@@ -2,9 +2,6 @@
   display: grid;
   grid-template-columns: 4fr 1fr;
   grid-template-rows: 80vh auto;
-  column-gap: .5;
-  align-items: start;
-  justify-items: start;
 }
 #accordion-right {
   display: none;

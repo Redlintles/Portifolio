@@ -7,7 +7,7 @@
 }
 #ar-show:checked ~ #video-container,
 #ar-show:checked ~ #main-menu {
-  grid-column:  1;
+  grid-column:  1/2;
 }
 #ar-show:checked ~ #main-menu .trigger-container label:nth-child(2),
 #ar-show:checked ~ #main-menu #course-content-wrapper {
