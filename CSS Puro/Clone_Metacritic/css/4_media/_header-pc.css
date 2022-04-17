@@ -1,0 +1,116 @@
+@media(min-width: 1200px) {
+  .header-container {
+    flex-direction: row;
+  }
+  .htc-hover-container {
+    flex-direction: row;
+    min-width: 600px;
+    top: 3.15rem;
+    left: -20rem;
+    height: 500px;
+    width: auto;
+  }
+  .htc-hover-container > div:first-child {
+    display: flex;
+  }
+  .hc-platforms-container {
+    padding: 0 1.5rem;
+    width: auto;
+    flex-grow: 1;
+    border: none;
+    border-right: 1px solid white;
+    margin: 0;
+  }
+  .hc-img-container {
+    order: -1;
+    margin-top: 0;
+    flex-direction: column;
+  }
+  .hc-img-container div {
+    white-space: normal;
+    width: auto;
+  }
+  .hc-img-container img{
+    order: -1;
+    margin: 0;
+    width: 10rem;
+    height: auto;
+  }
+  .hc-text-sm {
+    font-size: .7rem;
+  }
+  .hc-list .hc-text-sm {
+    display: none;
+  }
+  .hc-platforms-container > .hc-text-sm {
+    display: block;
+  }
+  .hc-platforms-container .hc-list {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .hc-platforms-container .hc-list li {
+    margin: 0 0 .5rem;
+  }
+  .header-left-container {
+    width: auto;
+    flex-grow: 40;
+    padding: 0;
+  }
+  .hc-media-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: .5rem;
+    row-gap: 1rem;
+  }
+  .hc-media-img + img {
+    position: absolute;
+    width: 2.5rem;
+    right: .3rem;
+    top: .3rem;
+  }
+  .hc-media-img + div {
+    position: absolute;
+    right: .3rem;
+    top: 0;
+  }
+  .header-logo-container {
+    flex-grow: 1;
+  }
+  .form-container {
+    flex-grow: 3;
+  }
+  .header-links-container {
+    width: auto;
+    flex-grow: 1;
+    margin-left: 1rem;
+    position: relative;
+  }
+  .header-left-container > .htc-btn {
+    display: none
+  }
+  .header-links-container .htc-btn {
+    display: inline-block;
+  }
+  .header-logo-container:first-child {
+    width: 2rem;
+    height: 2rem;
+  }
+  .header-logo-container:last-child {
+    height: 2rem;
+  }
+  .bottom-bar-anime {
+    bottom: -.2rem;
+    left: 1.1rem;
+  }
+  #htc-movies:hover ~ .bottom-bar-anime {
+    left: 5.1rem;
+  }
+  #htc-tv:hover ~ .bottom-bar-anime {
+    left: 8.1rem;
+  }
+  #htc-music:hover ~ .bottom-bar-anime {
+    left: 10.8rem;
+  }
+}

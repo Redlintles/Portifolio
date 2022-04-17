@@ -1,0 +1,17 @@
+#summary-radio:checked ~ #media-info .mi-change-content .micc-label:nth-child(1),
+#critic-radio:checked ~ #media-info .mi-change-content .micc-label:nth-child(2),
+#user-radio:checked ~ #media-info .mi-change-content .micc-label:nth-child(3),
+#detail-radio:checked ~ #media-info .mi-change-content .micc-label:nth-child(4),
+#trailer-radio:checked ~ #media-info .mi-change-content .micc-label:nth-child(5){
+  background-color: #CCC;
+  color: black;
+}
+
+#summary-radio:checked ~ #main-content #summary-section,
+#critic-radio:checked ~ #main-content #critic-section,
+#user-radio:checked ~ #main-content #user-section,
+#detail-radio:checked ~ #main-content #detail-section,
+#trailer-radio:checked ~ #main-content #trailer-section {
+  display: flex;
+  flex-direction: column;
+}
