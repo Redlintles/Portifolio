@@ -4,13 +4,11 @@
 }
 main {
   display: grid;
-  max-width: var(--main-container-width);
+  width: 100vw;
   margin: 3rem auto 2rem;
   grid-template-columns: 1fr;
 }
-
 /*Informações sobre a mídia que será avaliada*/
-
 #media-info {
   display: none;
 }
@@ -67,6 +65,7 @@ main {
 .mit-span :first-of-type {
   margin-right: .3rem;
 }
+/* Mudança de Seção do Site */
 .mi-change-content {
   display: flex; 
   margin-bottom: 1rem;
@@ -85,19 +84,13 @@ main {
 
   text-align: center;
 }
-
 .micc-label:not(.micc-label:last-of-type) {
   margin-right: .2rem;
 }
-#main-content > section {
+#main-content > div {
   display: none;
 }
-
-
-
-
-
-
-
-
-
+#main-content > #summary-section {
+  display: flex;
+  flex-direction: column;
+}

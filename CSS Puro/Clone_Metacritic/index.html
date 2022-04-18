@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Undertale for PC Reviews - Metacritic</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="./img/MC_favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -339,9 +340,6 @@
     <input type="radio" name="change-main-section" id="detail-radio" class="micc-radio">
     <input type="radio" name="change-main-section" id="trailer-radio" class="micc-radio">
 
-    <input type="radio" name="change-aside-section" id="metascore-toggle" class="asc-radio" checked>
-    <input type="radio" name="change-aside-section" id="userscore-toggle" class="asc-radio">
-
     <section id="media-info">
       <div class="mi-top">
         <div class="mit-main-info">
@@ -391,9 +389,9 @@
         <label class="micc-label" for="trailer-radio">Trailers & Videos</label>
       </div>
     </section>
-    <section id="main-content">
-      <section id="summary-section">
-        <div class="sc-main-content">
+    <div id="main-content">
+      <div id="summary-section">
+        <section class="sc-main-content">
           <div class="sc-media-img">
             <img src="./img/undertale_logo.jpg" alt="Undertale">
             <img src="./img/mc-mustplay.svg" alt="Selo Must Play">
@@ -503,8 +501,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="sc-video-section">
+        </section>
+        <section class="sc-video-section">
           <h6 class="vc-title">trailer</h6>
           <p class="vc-mobile-text">Now Playing: Undertale PS4 & Vita Announcement Trailer - E3 2017</p>
           <div>
@@ -545,9 +543,8 @@
             </div>
             <div class="tsm-btn">Trailers</div>
           </div>
-        </div>
-        <!-- Possível Anúncio-->
-        <div class="sc-reviews-section">
+        </section>
+        <section class="sc-reviews-section">
           <div class="rate-game-mobile">
             <h2 class="mobile-title">Rate Game</h2>
             <div class="rgm-container">
@@ -858,6 +855,7 @@
             </div>
             <div class="rc-see-more">
               <a href="#" class="rc-more-reviews-link">See All 44 Critic Reviews</a>
+              <button class="rc-more-reviews-btn">Critic Reviews</button>
             </div>
           </div>
           <div class="rc-review-container" id="user-reviews">
@@ -1066,10 +1064,11 @@
             </div>
             <div class="rc-see-more">
               <a href="#" class="rc-more-reviews-link">See All 1134 User Reviews</a>
+              <button class="rc-more-reviews-btn">User Reviews</button>
             </div>
           </div>
-        </div>
-        <div class="sc-deals-section">
+        </section>
+        <section class="sc-deals-section">
           <h2 class="section-title">Shop Related Deals</h2>
           <div class="scd-container">
             <div class="deal">
@@ -1114,8 +1113,8 @@
             </div>
           </div>
 
-        </div>
-        <div class="sc-trailers-section">
+        </section>
+        <section class="sc-trailers-section">
           <h2 class="section-title">Trailers</h2>
           <div class="sct-container">
             <div class="trailer-item">
@@ -1158,8 +1157,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="sc-related-section">
+        </section>
+        <section class="sc-related-section">
           <h2 class="section-title">Related Articles</h2>
           <div class="scr-articles-container">
             <div class="scr-article">
@@ -1179,10 +1178,10 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section id="critic-section">
-        <div class="critic-top">
+        </section>
+      </div>
+      <div id="critic-section">
+        <section class="critic-top">
           <div class="critic-note">
             <div class="nc nc-md nc-green">92</div>
             <div class="critic-text">
@@ -1217,9 +1216,8 @@
               <span>0</span>
             </div>
           </div>
-        </div>
-
-        <div class="cs-reviews-container">
+        </section>
+        <section class="cs-reviews-container">
           <div class="rs-top">
             <div class="rst-left">
               <a href="#" class="rst-link">Critic score</a>
@@ -2262,9 +2260,8 @@
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="csr-unscored">
+        </section>
+        <section class="csr-unscored">
           <div class="csru-top">
             <h4 class="csr-title">In Progress & Unscored</h4>
             <div class="csr-question"><i class="fas fa-question"></i></div>
@@ -2294,10 +2291,10 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <section id="user-section">
-        <div class="critic-top">
+        </section>
+      </div>
+      <div id="user-section">
+        <section class="critic-top">
           <div class="critic-note">
             <div class="nc nc-md nc-rounded nc-green">92</div>
             <div class="critic-text">
@@ -2332,8 +2329,8 @@
               <span>591</span>
             </div>
           </div>
-        </div>
-        <div class="us-new-review">
+        </section>
+        <section class="us-new-review">
           <div class="nr-top">
             <h5>Review this game</h5>
           </div>
@@ -2371,8 +2368,8 @@
             </div>
           </div>
 
-        </div>
-        <div class="us-reviews">
+        </section>
+        <section class="us-reviews">
           <div class="rs-top">
             <div class="rst-left">
               <a href="#" class="rst-link">Critic score</a>
@@ -3229,11 +3226,10 @@
                   class="usf-link">next</a><i class="fas fa-caret-right"></i></p>
             </div>
           </div>
-        </div>
-
-      </section>
-      <section id="detail-section">
-        <div class="ds-top">
+        </section>
+      </div>
+      <div id="detail-section">
+        <section class="ds-top">
           <div class="ds-media-logo">
             <img src="./img/undertale_logo.jpg" alt="">
           </div>
@@ -3263,8 +3259,8 @@
             <p><span>Summary:</span> Welcome to UNDERTALE. In this RPG, you controla human who falls underground into
               the world of monsters, Now you must find your way out.. or stay trapped forever</p>
           </div>
-        </div>
-        <div class="ds-table">
+        </section>
+        <section class="ds-table">
           <table>
             <tr>
               <td><span>Developer:</span></td>
@@ -3295,14 +3291,14 @@
               <td>Artist</td>
             </tr>
           </table>
-        </div>
-        <div class="ds-footer">
+        </section>
+        <section class="ds-footer">
           <p>Designer/Producer/Programmer credits provided by <a href="#">GameFAQs</a></p>
           <p>If you contributed to this game and feel you should be credited, please read our <a href="#">FAQ</a></p>
-        </div>
-      </section>
-      <section id="trailer-section">
-        <div class="ts-top">
+        </section>
+      </div>
+      <div id="trailer-section">
+        <section class="ts-top">
           <div class="media-scores">
             <div class="ms-score">
               <div class="note-container">
@@ -3325,8 +3321,8 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="ts-main">
+        </section>
+        <section class="ts-main">
           <h2 class="section-title">Undertale PS4 & Vita Announcement Trailer E3 2017</h2>
 
           <div class="ts-video">
@@ -3335,8 +3331,8 @@
           <p><span>Description:</span> The modern cult classic is making its way to PS4 and BVita, as revelaed at Sony's
             E3 2017
             press conference</p>
-        </div>
-        <div class="ts-footer">
+        </section>
+        <section class="ts-footer">
           <h2 class="section-title">Additional Trailers And Clips(3)</h2>
           <div class="sct-container">
             <div class="trailer-item">
@@ -3379,9 +3375,9 @@
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </section>
+        </section>
+      </div>
+    </div>
     <aside id="aside-section">
       <section class="as-awards-section">
         <div class="aside-container">
@@ -3405,7 +3401,6 @@
         </div>
       </section>
       <section class="as-essential-section">
-
         <div class="aside-container">
           <div class="ac-title">
             <h3>Essential Links</h3>
@@ -3463,6 +3458,8 @@
             <label for="userscore-toggle" class="ac-label">By User Score</label>
           </div>
           <div class="ac-content">
+            <input type="radio" name="change-aside-section" id="metascore-toggle" class="asc-radio" checked>
+            <input type="radio" name="change-aside-section" id="userscore-toggle" class="asc-radio">
             <div class="ac-more-games" id="ac-critic-top">
               <div class="ac-game-container">
                 <div class="nc nc-xs nc-green">95</div>

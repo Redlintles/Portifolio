@@ -6,12 +6,20 @@
   background-color: #CCC;
   color: black;
 }
-
-#summary-radio:checked ~ #main-content #summary-section,
-#critic-radio:checked ~ #main-content #critic-section,
-#user-radio:checked ~ #main-content #user-section,
-#detail-radio:checked ~ #main-content #detail-section,
-#trailer-radio:checked ~ #main-content #trailer-section {
+#metascore-toggle:checked ~ #aside-section .as-current-section .aside-container .ac-content #ac-critic-top,
+#userscore-toggle:checked ~ #aside-section .as-current-section .aside-container .ac-content #ac-user-top {
   display: flex;
-  flex-direction: column;
+}
+@media(min-width: 1200px) {
+  #main-content > div {
+    display: none;
+  }
+  #summary-radio:checked ~ #main-content #summary-section,
+  #critic-radio:checked ~ #main-content #critic-section,
+  #user-radio:checked ~ #main-content #user-section,
+  #detail-radio:checked ~ #main-content #detail-section,
+  #trailer-radio:checked ~ #main-content #trailer-section {
+    display: flex;
+    flex-direction: column;
+  }
 }

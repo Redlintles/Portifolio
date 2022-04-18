@@ -59,4 +59,10 @@
   .rc-note-bars {
     display: flex;
   }
+  .rc-more-reviews-btn {
+    display: none;
+  }
+  .rc-more-reviews-link {
+    display: block;
+  }
 }

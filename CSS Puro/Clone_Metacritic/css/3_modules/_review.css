@@ -38,7 +38,6 @@
 .review-footer {
   display: none;
 }
-
 @media(min-width: 1200px) {
   .review-footer {
     display: flex;
@@ -48,7 +47,6 @@
   font-size: .6rem;
   color: #333;
 }
-
 #user-section .review-footer,
 #user-reviews .review-footer {
   justify-content: flex-end;
@@ -59,7 +57,6 @@
   background-color: #F1F1F1;
   padding: .5rem;
 }
-
 .reviews-container {
   display: flex;
   flex-direction: column;
@@ -67,19 +64,16 @@
   border: 1px solid #cfcfcf;
   padding: .5rem;
 }
-
 .reviews-container .review {
   flex-direction: row;
 }
 .reviews-container .review-header {
   justify-content: space-between
 }
-
 @media(min-width: 1200px) {
   .review {
     border: 1px solid #cfcfcf;
     padding: .6rem;
-
   }
   .review-main {
     font-size: .6rem;

@@ -13,7 +13,7 @@
 
 @media(min-width: 1200px) {
   :root {
-  --navbar-width: 980px;
+  --navbar-width: 968px;
   --main-container-width: 768px;
   }
 }

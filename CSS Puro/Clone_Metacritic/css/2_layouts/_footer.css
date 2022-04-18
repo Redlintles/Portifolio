@@ -1,6 +1,5 @@
 footer {
   margin: 0 auto;
-  max-width: var(--main-container-width);
   display: flex;
 }
 

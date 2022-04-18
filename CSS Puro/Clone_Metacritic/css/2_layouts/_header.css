@@ -14,31 +14,38 @@ header {
   width: 100%;
   padding: 1rem 0;
   align-items: center;
-
+}
+.header-links-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 .header-logo-container {
   display: flex;
   margin-right: .5rem;
-  flex-grow: 4;
+  flex-grow: 2;
 }
 .header-logo-container:first-child {
-  width: 1.6rem;
-  height: 1.6rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 .header-logo-container:last-child {
-  height: 1.6rem;
+  height: 1.2rem;
 }
 .form-container {
   display: flex;
-  background-color: var(--main-black);
-  flex-grow: 2;
+  background-color: transparent;
+  flex-grow: 1;
 }
 .form-container form {
   width: 100%;
   display: flex;
   border-radius: 5px;
   border: 1px solid white;
-  justify-content: space-between
+  justify-content: space-between;
+  padding: 0 .5rem;
 }
 #search-form-input {
   background-color: transparent;
@@ -56,13 +63,6 @@ header {
   background-color: transparent;
   width: 10%;
 }
-.header-links-container {
-  display: flex;
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-  position: relative;
-}
 .htc-btn {
   background-color: transparent;
   border: 2px solid white;
@@ -79,21 +79,21 @@ header {
   width: 1.8rem;
   background-color: white;
   border-radius: 10px;
-  left: 3.5rem;
+  left: 1rem;
   bottom: -.5rem;
   transition: left .5s ease;
 }
 #htc-movies:hover ~ .bottom-bar-anime,
 #htc-movies:focus ~ .bottom-bar-anime {
-  left: 9.8rem;
+  left: 9rem;
 }
 #htc-tv:hover ~ .bottom-bar-anime,
 #htc-tv:focus ~ .bottom-bar-anime {
-  left: 15.25rem;
+  left: 16.1rem;
 }
 #htc-music:hover ~ .bottom-bar-anime,
 #htc-music:focus ~ .bottom-bar-anime {
-  left: 20.5rem;
+  left: 23rem;
 }
 .htc-hover-container {
   display: flex;
@@ -107,6 +107,7 @@ header {
   padding: 1.5rem 0;
   width: 100vw;
   top: 1.7rem;
+  left: -.499rem;
 }
 .htc-hover-container > div {
   display: flex;
@@ -120,12 +121,12 @@ header {
   margin-top: 2rem;
   order: 4;
   align-items: flex-start;
+  justify-content: space-between;
 }
 .hc-img-container div {
   display: inline-flex;
   flex-direction: column;
-  width: min-content;
-  white-space: nowrap;
+  width: max-content;
 }
 .hc-img-container img{
   width: 5rem;
@@ -162,7 +163,6 @@ header {
   font-weight: 600;
   margin: .3rem 0;
 }
-
 .hc-platforms-container {
   border: 1px solid white;
   width: 100vw;
@@ -171,7 +171,6 @@ header {
   overflow: auto;
   margin: 2rem 0;
 }
-
 .hc-platforms-container > .hc-text-sm {
   display: none;
 }
@@ -183,16 +182,13 @@ header {
   align-items: center;
   padding-right: .5rem;
 }
-
 .hc-platforms-container .hc-list li:not(:last-of-type) {
   margin-right: 1rem;
 }
-
 .hc-media-container {
   display: grid;
   grid-template-columns: repeat(4,1fr);
 }
-
 .hc-media-item {
   grid-column: span 1;
   display: flex;
@@ -214,20 +210,11 @@ header {
   right: 1rem;
   top: .3rem;
 }
-
 .header-left-container > .htc-btn {
   display: inline-block;
   height: 2rem;
   margin-left: .5rem;
 }
-
 .header-links-container .htc-btn {
   display: none;
 }
-
-
-
-
-
-
-

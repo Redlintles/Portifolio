@@ -4,7 +4,6 @@
   border: 1px solid #ccc;
   margin-bottom: 1rem;
 }
-
 .nr-top {
   background-color: #444;
   color: white;
@@ -13,51 +12,42 @@
   font-size: .8rem;
   font-weight: bolder;
 }
-
 .nr-main {
   padding: .5rem;
   background-color: #f1f1f1;
 }
-
 .nr-main .rate-bar {
   pointer-events: none;
 }
-
 .nrm-text {
   background-color: white;
   height: 8rem;
   border: 1px solid #ccc;
   padding: .5rem;
 }
-
 .nrm-text p {
   font-size: .6rem;
 }
-
 .nr-footer {
   display: flex;
   justify-content: space-between;
   background-color: #f1f1f1;
   padding: .5rem;
 }
-
 .nrf-left {
   display: flex;
   align-items: center;
 }
-
 .nrf-left label {
   font-size: .5rem;
   color: #888;
   margin-right: .5rem;
 }
-
 #check-spoiler {
   width: .6rem;
   height: .6rem;
   pointer-events: none;
 }
-
 .nrf-right button {
   pointer-events: none;
   color: white;
@@ -72,23 +62,19 @@
   background-color: #f1f1f1;
   padding: 1rem .5rem;
 }
-
 .change-page {
   display: flex;
 }
-
 .usf-left {
   display: flex;
   align-items: center;
 
 }
-
 .usf-left span {
   font-weight: bold;
   font-size: .6rem;
   margin-right: .3rem;
 }
-
 .page-unity {
   font-size: .7rem;
   background-color: white;
@@ -101,25 +87,19 @@
   margin-right: .3rem;
   cursor: pointer;
 }
-
 .page-unity:first-of-type {
   background-color: #f1f1f1;
 }
-
 .page-unity:hover {
   color: var(--main-yellow);
 }
-
 .usf-right {
   font-size: .8rem;
 }
-
 .usf-right i {
   margin: 0 .3rem;
 }
-
 .usf-right a:first-of-type,
 .usf-right i:first-of-type {
   color: #aaa
 }
-

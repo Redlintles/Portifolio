@@ -12,7 +12,6 @@
   font-weight: bold;
   white-space: nowrap;
 }
-
 @media(min-width: 1200px) {
   .hc-sm-link {
     font-size: .6rem;
@@ -51,7 +50,6 @@
     font-size: .9rem;
   }
 }
-
 .mit-media-link {
   width: 2rem;
   height: 2rem;
@@ -61,7 +59,6 @@
   align-items: center;
   font-size: 1.2rem;
 }
-
 .mit-media-link:not(:last-of-type) {
   margin-right: .6rem;
 }
@@ -108,7 +105,6 @@
   font-size: 1rem;
   font-weight: bold;
 }
-
 @media(min-width: 1200px) {
   .review-username-link {
     color: dodgerblue;
@@ -139,7 +135,6 @@
   color: dodgerblue;
   font-size: .5rem;
 }
-
 @media(min-width: 1200px) {
   .review-main .review-read-link {
     display: none;
@@ -154,9 +149,9 @@
 .rc-more-reviews-link {
   font-size: .8rem;
   font-weight: bold;
-  transition: .3s
+  transition: .3s;
+  display: none;
 }
-
 .deal-link {
   font-size: .7rem;
   font-weight: bold;
@@ -215,15 +210,12 @@
   font-size: .6rem;
   transition: .3s;
 }
-
 .ms-text a {
   font-weight: bold;
 }
-
 .ds-footer a {
   font-weight: bold;
 }
-
 .asa-link {
   font-size: .7rem;
   font-weight: bold;
@@ -231,72 +223,60 @@
   white-space: nowrap;
   cursor: pointer;
 }
-
 .ase-link {
   font-size: .65rem;
   font-weight: bolder;
   transition: .3s;
   cursor: pointer;
 }
-
 .acg-link {
   margin-left: .5rem;
   font-size: .6rem;
   font-weight: bold;
   transition: .3s;
 }
-
 .footer-dark-link {
   color: #555;
   font-size: .6rem;
 }
-
 .fm-light-gray-link {
   color: #aaa;
   font-size: .7rem;
   font-weight: bolder;
   text-transform: uppercase;
 }
-
 .fm-light-gray-link:not(:last-of-type) {
   margin-right: .3rem;
 }
-
 .fm-media-link {
   color: #777;
   font-size: 1.5rem;
   margin: 0 .5rem;
 }
-
 .fb-link {
   color: #bbb;
   font-size: .6rem;
 }
-
 .nsm-link {
   color: dodgerblue;
   font-size: .9rem;
   font-weight: bolder;
 }
-
 .fmo-link {
   color: white;
   font-size: .8rem;
   text-decoration: underline;
 }
-
 .tsm-link {
   font-size: .9rem;
   font-weight: bold;
   height: 100%;
 }
-
 .nbm-link {
   font-size: .8rem;
   color: dodgerblue;
   font-weight: bold;
 }
-
 .mit-link:hover,
 .review-all-link:hover,
 .sc-sm-link:hover,
