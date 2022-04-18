@@ -6,12 +6,15 @@
   background-color: #CCC;
   color: black;
 }
-#metascore-toggle:checked ~ #aside-section .as-current-section .aside-container .ac-content #ac-critic-top,
-#userscore-toggle:checked ~ #aside-section .as-current-section .aside-container .ac-content #ac-user-top {
+#metascore-toggle:checked ~ #ac-critic-top,
+#userscore-toggle:checked ~ #ac-user-top {
   display: flex;
 }
 @media(min-width: 1200px) {
   #main-content > div {
+    display: none;
+  }
+  #summary-radio:not(:checked) ~ #main-content #summary-section {
     display: none;
   }
   #summary-radio:checked ~ #main-content #summary-section,
@@ -19,7 +22,7 @@
   #user-radio:checked ~ #main-content #user-section,
   #detail-radio:checked ~ #main-content #detail-section,
   #trailer-radio:checked ~ #main-content #trailer-section {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
   }
 }
