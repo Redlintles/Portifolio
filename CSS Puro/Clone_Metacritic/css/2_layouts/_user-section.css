@@ -68,38 +68,12 @@
 .usf-left {
   display: flex;
   align-items: center;
-
 }
 .usf-left span {
   font-weight: bold;
   font-size: .6rem;
   margin-right: .3rem;
 }
-.page-unity {
-  font-size: .7rem;
-  background-color: white;
-  display: flex;
-  border: 1px solid #ccc;
-  width: 20px;
-  height: 20px;
-  justify-content: center;
-  align-items: center;
-  margin-right: .3rem;
-  cursor: pointer;
-}
-.page-unity:first-of-type {
-  background-color: #f1f1f1;
-}
-.page-unity:hover {
-  color: var(--main-yellow);
-}
 .usf-right {
-  font-size: .8rem;
-}
-.usf-right i {
-  margin: 0 .3rem;
-}
-.usf-right a:first-of-type,
-.usf-right i:first-of-type {
-  color: #aaa
+  display: flex;
 }

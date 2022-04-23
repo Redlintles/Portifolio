@@ -32,10 +32,6 @@
   font-size: .65rem;
   width: 50%;
 }
-.critic-top .rc-note-bars {
-  padding: .5rem;
-  padding-right: 2rem;
-}
 .csru-top {
   display: flex;
   background-color: #666;

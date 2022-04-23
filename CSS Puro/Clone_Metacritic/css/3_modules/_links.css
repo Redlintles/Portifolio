@@ -1,34 +1,14 @@
-.htc-link {
+/*
+*/
+
+
+.hlc-link {
   margin: 0 .5rem;
   color: white;
   text-transform: uppercase;
   font-size: .7rem;
   font-weight: 600;
   letter-spacing: 0.03rem;
-}
-.hc-sm-link {
-  color: var(--light-blue);
-  font-size: .9rem;
-  font-weight: bold;
-  white-space: nowrap;
-}
-@media(min-width: 1200px) {
-  .hc-sm-link {
-    font-size: .6rem;
-  }
-}
-.hc-xs-link {
-  width: 4rem;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: white;
-  font-size: .6rem;
-  transition: .3s;
-  margin-top: .5rem;
-}
-.hc-xs-link:hover {
-  color: #FDCA21;
 }
 .hc-first-link {
   margin-top: 1rem;
@@ -42,15 +22,26 @@
   font-weight: bold;
   margin-top: 1rem;
 }
-@media(min-width: 1200px) {
-  .hc-first-link {
-    font-size: .8rem;
-  }
-  .hc-main-link {
-    font-size: .9rem;
-  }
+.hc-sm-link {
+  color: var(--light-blue);
+  font-size: .9rem;
+  font-weight: bold;
+  white-space: nowrap;
 }
-.mit-media-link {
+.hc-media-link {
+  width: 4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: white;
+  font-size: .6rem;
+  transition: .3s;
+  margin-top: .5rem;
+}
+.hc-media-link:hover {
+  color: #FDCA21;
+}
+.main-media-link {
   width: 2rem;
   height: 2rem;
   color: white;
@@ -59,42 +50,45 @@
   align-items: center;
   font-size: 1.2rem;
 }
-.mit-media-link:not(:last-of-type) {
+.main-media-link:not(:last-of-type) {
   margin-right: .6rem;
 }
-.mit-right a:first-child {
+.main-media-link:first-child {
   background-color: #3B5998;
 }
-.mit-right a:nth-child(2) {
+.main-media-link:nth-child(2) {
   background-color: #00ACEE;
 }
-.mit-right a:nth-child(3) {
+.main-media-link:nth-child(3) {
   background-color: #FF4500;
 }
-.mit-right a:last-child {
+.main-media-link:last-child {
   background-color: #C8232C;
 }
-.mit-right a:first-child:hover {
+.main-media-link:first-child:hover {
   background-color: #2A4887;
 }
-.mit-right a:nth-child(2):hover {
+.main-media-link:nth-child(2):hover {
   background-color: #009BDD;
 }
-.mit-right a:nth-child(3):hover {
+.main-media-link:nth-child(3):hover {
   background-color: #EE3400;
 }
-.mit-right a:last-child:hover {
+.main-media-link:last-child:hover {
   background-color: #B7121B;
 }
-.mit-link {
+.main-link {
   color: #222;
   font-weight: bold;
   transition: color .5s ease;
 }
-.mit-link:not(:last-of-type) {
+.main-link:not(:last-of-type) {
   margin-right: .3rem;
 }
-.sc-sm-link {
+.main-link:hover {
+  color: var(--main-yellow);
+}
+.summary-link {
   font-weight: 800;
   font-size: .6rem;
   transition: .5s;
@@ -105,14 +99,8 @@
   font-size: 1rem;
   font-weight: bold;
 }
-@media(min-width: 1200px) {
-  .review-username-link {
-    color: dodgerblue;
-    font-size: .7rem
-  }
-}
 .review-all-link {
-  font-size: .6rem;
+  font-size: .5rem;
   transition: .5s;
 }
 .review-all-link::after {
@@ -131,19 +119,11 @@
   color: dodgerblue;
   font-weight: bold;
 }
-.review-read-link {
+.review-full-link {
   color: dodgerblue;
   font-size: .5rem;
 }
-@media(min-width: 1200px) {
-  .review-main .review-read-link {
-    display: none;
-  }
-  .rc-expand-link {
-    font-size: .6rem;
-  }
-}
-.review-read-link i {
+.review-full-link i {
   margin-left: .3rem;
 }
 .rc-more-reviews-link {
@@ -152,7 +132,7 @@
   transition: .3s;
   display: none;
 }
-.deal-link {
+.sc-deals-link {
   font-size: .7rem;
   font-weight: bold;
   overflow: hidden;
@@ -161,19 +141,19 @@
   margin-bottom: .5rem;
   transition: .3s;
 }
-.deal-link::before {
+.sc-deals-link::before {
   position: absolute;
   width: 100%;
   height: 100%;
   content: "";
   top: 0;
 }
-.sct-main-link {
+.sct-title-link {
   font-size: .7rem;
   font-weight: 600;
   transition: .5s;
 }
-.sct-secondary-link {
+.sct-btn-link {
   background: linear-gradient(to bottom, #fff, #ccc);
   border: 1px solid #777;
   width: min-content;
@@ -184,10 +164,44 @@
   justify-content: center;
   align-items: center;
 }
-.scr-link {
+.sc-related-link {
   font-weight: bold;
   font-size: .7rem;
   transition: .3s;
+}
+
+.page-link {
+  font-size: .7rem;
+  background-color: white;
+  display: flex;
+  border: 1px solid #ccc;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-right: .3rem;
+  cursor: pointer;
+}
+.page-link:first-of-type {
+  background-color: #f1f1f1;
+}
+.page-link:hover {
+  color: var(--main-yellow);
+}
+.page-prev-link,
+.page-next-link {
+  font-size: .8rem;
+}
+.page-prev-link i,
+.page-next-link i {
+  margin: 0 .3rem;
+}
+.page-prev-link {
+  color: #aaa
+}
+.page-next-link::before {
+  content: "|";
+  margin: 0 .3rem;
 }
 .rst-link {
   font-weight: bold;
@@ -216,20 +230,20 @@
 .ds-footer a {
   font-weight: bold;
 }
-.asa-link {
+.aside-award-link {
   font-size: .7rem;
   font-weight: bold;
   transition: .3s;
   white-space: nowrap;
   cursor: pointer;
 }
-.ase-link {
+.aside-essential-link {
   font-size: .65rem;
   font-weight: bolder;
   transition: .3s;
   cursor: pointer;
 }
-.acg-link {
+.aside-game-link {
   margin-left: .5rem;
   font-size: .6rem;
   font-weight: bold;
@@ -239,21 +253,21 @@
   color: #555;
   font-size: .6rem;
 }
-.fm-light-gray-link {
+.footer-light-gray-link {
   color: #aaa;
   font-size: .7rem;
   font-weight: bolder;
   text-transform: uppercase;
 }
-.fm-light-gray-link:not(:last-of-type) {
+.footer-light-gray-link:not(:last-of-type) {
   margin-right: .3rem;
 }
-.fm-media-link {
+.footer-media-link {
   color: #777;
   font-size: 1.5rem;
   margin: 0 .5rem;
 }
-.fb-link {
+.footer-bottom-link {
   color: #bbb;
   font-size: .6rem;
 }
@@ -262,36 +276,59 @@
   font-size: .9rem;
   font-weight: bolder;
 }
-.fmo-link {
+.footer-mobile-link {
   color: white;
   font-size: .8rem;
   text-decoration: underline;
 }
-.tsm-link {
+.trailer-item-link {
   font-size: .9rem;
   font-weight: bold;
   height: 100%;
 }
-.nbm-link {
+.note-bar-link {
   font-size: .8rem;
   color: dodgerblue;
   font-weight: bold;
 }
-.mit-link:hover,
+.main-link:hover,
+.summary-link:hover,
+.review-username-link:hover,
 .review-all-link:hover,
-.sc-sm-link:hover,
+.review-full-link:hover,
 .rc-more-reviews-link:hover,
-.deal-link:hover,
-.sct-main-link:hover,
-.scr-link:hover,
-.csr-link:hover,
-.nr-link:hover,
-.rsr-link:hover,
-.ds-footer a:hover,
-.asa-link:hover,
-.ase-link:hover,
-.acg-link:hover,
+.sc-deals-link:hover,
+.sct-title-link:hover,
+.sc-related-link:hover,
 .footer-dark-link:hover,
-.fm-light-gray-link:hover {
+.footer-light-gray-link:hover,
+.footer-media-link:hover,
+.footer-bottom-link:hover,
+.footer-mobile-link:hover,
+.aside-award-link:hover,
+.aside-essential-link:hover,
+.aside-game-link:hover {
   color: var(--main-yellow);
+}
+
+@media(min-width: 1200px) {
+  .hc-sm-link {
+    font-size: .6rem;
+  }
+  .hc-first-link {
+    font-size: .8rem;
+  }
+  .hc-main-link {
+    font-size: .9rem;
+  }
+  .review-username-link {
+    color: dodgerblue;
+    font-size: .7rem
+  }
+  .review-main .review-full-link {
+    display: none;
+  }
+  .rc-expand-link {
+    font-size: .6rem;
+  }
 }

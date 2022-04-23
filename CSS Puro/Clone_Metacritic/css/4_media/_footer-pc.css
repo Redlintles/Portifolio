@@ -1,6 +1,6 @@
 @media(min-width: 1200px) {
   footer {
-    max-width: var(--main-container-width);
+    width: var(--main-container-width);
   }
   .footer-mobile {
     display: none;

@@ -1,7 +1,4 @@
 @media(min-width: 1200px) {
-  #summary-section {
-    max-width: none;
-  }
   .sc-note-stats,
   .sc-media-meta {
     display: flex;
@@ -56,13 +53,21 @@
   .vc-title {
     display: block;
   }
-  .rc-note-bars {
-    display: flex;
-  }
   .rc-more-reviews-btn {
     display: none;
   }
   .rc-more-reviews-link {
     display: block;
+  }
+  #summary-section .rc-note-bars {
+    display: flex;
+    padding: .5rem 2rem;
+  }
+  .rc-title,
+  .rc-note-bars {
+    display: flex;
+  }
+  .rc-note-bars {
+    padding-right: 1rem;
   }
 }
