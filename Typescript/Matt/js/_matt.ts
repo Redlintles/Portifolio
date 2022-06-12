@@ -85,6 +85,13 @@ class Matt implements _Matt {
     }
     return true
   };
+  get mattType() {
+    if(this.isSet) {
+      return typeof this.matt[0][0]
+    } else {
+      return "any"
+    }
+  }
   getRow(n: number): any[] {
     
     n = this.validate(n,"row");
@@ -202,9 +209,22 @@ class Matt implements _Matt {
   }
   printMatt():void {
     console.log("\n")
-    console.log("\n A Matriz é:")
+    console.log("A Matriz é:")
     for(let i of this.matt) {
-      console.log(i)
+      if(this.isSet && this.mattType === "number") {
+        let template = "[ ";
+        for(let j of i) {
+          if(j >= 0) {
+            template += `+${j} `;
+          } else {
+            template += `${j} `;
+          }
+        }
+        template+= "]";
+        console.log(template);
+      } else {
+        console.log(i)
+      }
     }
     console.log("\n");
   }

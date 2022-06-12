@@ -5,14 +5,15 @@ var Det = /** @class */ (function () {
     function Det() {
     }
     Det.prototype.validate = function (matt, n) {
+        if (n === void 0) { n = 0; }
         if (!(matt.isSquare)) {
             throw new Error("Apenas Matrizes Quadradas possuem determinantes!");
         }
-        else if (!(n === matt.rows)) {
+        else if (n && !(n === matt.rows)) {
             throw new Error("A Matriz Passada n\u00E3o \u00E9 ".concat(n, "x").concat(n, "!"));
         }
-        else if (!(matt.isSet && typeof matt.matt[0][0] === "number")) {
-            throw new Error("A matriz dve conter apenas números entre seus itens!");
+        else if (!(matt.isSet && matt.mattType === "number")) {
+            throw new Error("A matriz deve conter apenas números entre seus itens!");
         }
     };
     Det.prototype.of2x2 = function (matt) {
@@ -38,24 +39,35 @@ var Det = /** @class */ (function () {
         var n2 = secDiags.reduce(function (acc, crr) { return acc + crr; }, 1);
         return n1 - n2;
     };
-    Det.prototype.of4x4 = function (matt) {
-        this.validate(matt, 4);
+    Det.prototype.laPlace = function (matt) {
+        if (matt.rows < 4) {
+            throw new Error("o Uso ideal do teorema de La Place é para matrizes grandes, use métodos mais simples para matrizes menores!");
+        }
+        this.validate(matt);
         var firstCol = matt.getCol(0);
         var coeficients = [];
+        var results = [];
         for (var i in firstCol) {
             var n = parseInt(i);
             var mattCopy = matt.copyMatt();
             mattCopy.removeCol(0);
             mattCopy.removeRow(n);
             var modifier = Math.pow(-1, (n + 1) + 1);
-            coeficients.push(modifier * this.of3x3(mattCopy));
+            var result = void 0;
+            if (mattCopy.rows === 3) {
+                result = this.of3x3(mattCopy);
+            }
+            else {
+                result = this.laPlace(mattCopy);
+            }
+            coeficients.push(modifier * result);
         }
-        var results = [];
         for (var i in firstCol) {
-            var n = parseInt(i);
-            results.push(firstCol[n] * coeficients[n]);
+            var item1 = firstCol[parseInt(i)];
+            var item2 = coeficients[parseInt(i)];
+            results.push(item1 * item2);
         }
-        return results.reduce(function (acc, crr) { return acc + crr; }, 0);
+        return results.reduce(function (acc, crr) { return acc + crr; });
     };
     return Det;
 }());

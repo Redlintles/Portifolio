@@ -111,6 +111,18 @@ var Matt = /** @class */ (function () {
         configurable: true
     });
     ;
+    Object.defineProperty(Matt.prototype, "mattType", {
+        get: function () {
+            if (this.isSet) {
+                return typeof this.matt[0][0];
+            }
+            else {
+                return "any";
+            }
+        },
+        enumerable: false,
+        configurable: true
+    });
     Matt.prototype.getRow = function (n) {
         n = this.validate(n, "row");
         return this.matt[n];
@@ -223,10 +235,26 @@ var Matt = /** @class */ (function () {
     };
     Matt.prototype.printMatt = function () {
         console.log("\n");
-        console.log("\n A Matriz é:");
+        console.log("A Matriz é:");
         for (var _i = 0, _a = this.matt; _i < _a.length; _i++) {
             var i = _a[_i];
-            console.log(i);
+            if (this.isSet && this.mattType === "number") {
+                var template = "[ ";
+                for (var _b = 0, i_2 = i; _b < i_2.length; _b++) {
+                    var j = i_2[_b];
+                    if (j >= 0) {
+                        template += "+".concat(j, " ");
+                    }
+                    else {
+                        template += "".concat(j, " ");
+                    }
+                }
+                template += "]";
+                console.log(template);
+            }
+            else {
+                console.log(i);
+            }
         }
         console.log("\n");
     };

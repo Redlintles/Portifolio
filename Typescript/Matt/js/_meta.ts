@@ -21,12 +21,13 @@ export interface _Matt {
   get isSet(): boolean
   get diag(): any[]
   get secDiag(): any[]
+  get mattType(): string
 }
 
 export interface _Det {
   of2x2(matt: _Matt): number
   of3x3(matt: _Matt): number
-  of4x4(matt: _Matt): number
+  laPlace(matt: _Matt): number
 }
 
 

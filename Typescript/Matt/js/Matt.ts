@@ -3,15 +3,23 @@ import {_Matt,_Det} from "./_meta";
 import Det from "./_det";
 
 const matt1: _Matt = new Matt(
-  [[7,6,2,3],[4,6,8,1],[9,1,5,-6],[
-    8,-4,2,7]],true
+  
+  [
+    [7,6,2,3,2,4],
+    [4,6,8,1,8,9],
+    [9,1,5,-6,-3,5],
+    [8,-4,2,7,-3,8],
+    [2,5,6,4,8,1],
+    [5,6,7,-9,3,2]
+  ],
+    true
   
 );
 
 let detCalculator: _Det = new Det();
 
 matt1.printMatt()
-console.log(detCalculator.of4x4(matt1))
+console.log(detCalculator.laPlace(matt1))
 /*
 matt1.rotateCols(1);
 matt1.printMatt()
