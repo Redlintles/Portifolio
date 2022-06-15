@@ -123,6 +123,18 @@ var Matt = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Matt.prototype.firstOccOf = function (el) {
+        for (var _i = 0, _a = this.matt; _i < _a.length; _i++) {
+            var i = _a[_i];
+            for (var _b = 0, i_2 = i; _b < i_2.length; _b++) {
+                var j = i_2[_b];
+                if (j === el) {
+                    return [i, j];
+                }
+            }
+        }
+        return -1;
+    };
     Matt.prototype.getRow = function (n) {
         n = this.validate(n, "row");
         return this.matt[n];
@@ -233,15 +245,15 @@ var Matt = /** @class */ (function () {
             }
         }
     };
-    Matt.prototype.printMatt = function () {
+    Matt.prototype.print = function () {
         console.log("\n");
         console.log("A Matriz é:");
         for (var _i = 0, _a = this.matt; _i < _a.length; _i++) {
             var i = _a[_i];
             if (this.isSet && this.mattType === "number") {
                 var template = "[ ";
-                for (var _b = 0, i_2 = i; _b < i_2.length; _b++) {
-                    var j = i_2[_b];
+                for (var _b = 0, i_3 = i; _b < i_3.length; _b++) {
+                    var j = i_3[_b];
                     if (j >= 0) {
                         template += "+".concat(j, " ");
                     }
@@ -258,7 +270,7 @@ var Matt = /** @class */ (function () {
         }
         console.log("\n");
     };
-    Matt.prototype.copyMatt = function () {
+    Matt.prototype.copy = function () {
         var newMatt = [];
         for (var i in this.matt) {
             newMatt.push([]);
@@ -268,6 +280,31 @@ var Matt = /** @class */ (function () {
             }
         }
         return new Matt(newMatt, this.isMutable);
+    };
+    Matt.prototype.switchRows = function (row, n) {
+        var toMove = this.getRow(row);
+        var newPosition = row + n;
+        if (newPosition < 0) {
+            newPosition = 0;
+        }
+        else if (newPosition >= this.rows) {
+            newPosition = this.rows - 1;
+        }
+        var target = this.getRow(newPosition);
+        var newMatt = [];
+        for (var _i = 0, _a = this.matt; _i < _a.length; _i++) {
+            var i = _a[_i];
+            if (i === target) {
+                newMatt.push(toMove);
+            }
+            else if (i === toMove) {
+                newMatt.push(target);
+            }
+            else {
+                newMatt.push(i);
+            }
+        }
+        this.matt = newMatt;
     };
     return Matt;
 }());

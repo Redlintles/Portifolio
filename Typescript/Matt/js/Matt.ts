@@ -5,26 +5,26 @@ import Det from "./_det";
 const matt1: _Matt = new Matt(
   
   [
-    [7,6,2,3,2,4],
-    [4,6,8,1,8,9],
-    [9,1,5,-6,-3,5],
-    [8,-4,2,7,-3,8],
-    [2,5,6,4,8,1],
-    [5,6,7,-9,3,2]
+    [1,-4,0,0,5],
+    [0,1,3,0,3],
+    [3,2,1,-1,2],
+    [0,2,1,13,1],
+    [-7,4,2,2,8]
   ],
     true
   
 );
 
 let detCalculator: _Det = new Det();
+matt1.print()
 
-matt1.printMatt()
-console.log(detCalculator.laPlace(matt1))
+console.log(detCalculator.laPlace(matt1));
+console.log(detCalculator.chioRule(matt1));
 /*
 matt1.rotateCols(1);
-matt1.printMatt()
+matt1.print()
 matt1.rotateCols(-2);
-matt1.printMatt()
+matt1.print()
 */
 //console.log(Det.of3x3(matt1));
 //console.log(matt1.isSquare);

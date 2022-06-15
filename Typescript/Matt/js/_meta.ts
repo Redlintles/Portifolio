@@ -13,8 +13,10 @@ export interface _Matt {
   mapCols(callbackFn: mapCallback): matt;
   rotateRows(n: number): void;
   rotateCols(n: number): void;
-  printMatt(): void;
-  copyMatt(): _Matt;
+  print(): void;
+  copy(): _Matt;
+  switchRows(row: number, n: number): void
+  firstOccOf(el: any): any;
   get cols(): number
   get rows(): number
   get isSquare(): boolean
@@ -22,12 +24,16 @@ export interface _Matt {
   get diag(): any[]
   get secDiag(): any[]
   get mattType(): string
+
+  
 }
 
 export interface _Det {
   of2x2(matt: _Matt): number
   of3x3(matt: _Matt): number
   laPlace(matt: _Matt): number
+  chioRule(matt: _Matt): number
+  // gaussElimination(matt: _Matt): number
 }
 
 

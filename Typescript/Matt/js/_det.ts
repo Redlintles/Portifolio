@@ -1,4 +1,4 @@
-import {_Matt,_Det} from "./_meta";
+import {_Matt,_Det,matt} from "./_meta";
 import Matt from "./_matt";
 
 class Det implements _Det {
@@ -44,7 +44,7 @@ class Det implements _Det {
     let results: number[] = [];
     for(let i in firstCol) {
       let n = parseInt(i);
-      let mattCopy = matt.copyMatt()
+      let mattCopy = matt.copy()
       mattCopy.removeCol(0);
       mattCopy.removeRow(n);
       let modifier = Math.pow(-1,(n+1)+1)
@@ -62,8 +62,55 @@ class Det implements _Det {
       results.push(item1*item2)
     }
     return results.reduce((acc,crr)=>{return acc+crr})
+  }  
+  chioRule(matt: _Matt):number {
+    this.validate(matt);
+    const firstCol:number[] = matt.getCol(0);
+    const firstRow:number[] = matt.getRow(0);
+    const mattCopy: _Matt = matt.copy();
+    let recursive:boolean = false;
+    const MCM:matt<number> = mattCopy.matt;
+    const newMatt:matt<number> = []
+    
+    firstCol.shift();
+    firstRow.shift();
+    
+    mattCopy.removeCol(0);
+    mattCopy.removeRow(0);
+    for(let i in MCM) {
+      let n1:number = parseInt(i);
+      if(n1 === 0) {
+        continue
+      } else {
+        n1--;
+      }
+      const marginX:number = firstCol[n1];
+      newMatt.push([]);
+      for(let j in MCM[n1]) {
+        let n2:number = parseInt(j)
+        if(n2 === 0) {
+          continue; 
+        } else {
+          n2--;
+        }
+        const marginY:number = firstRow[n2];
+        const item:number = MCM[i][j];
+        newMatt[n1].push(item-(marginX*marginY));
+      }
+    }
+    
+    const resultMatt: _Matt = new Matt(newMatt,true);
+    
+    if(resultMatt.rows > 3 && resultMatt.rows != matt.rows) {
+      recursive = true;
+    }
+    if(recursive) {
+      
+      return this.chioRule(resultMatt);
+    } else if(resultMatt.rows === 3){
+      return this.of3x3(resultMatt);
+    }
   }
   
 }
-
 export default Det

@@ -49,7 +49,7 @@ var Det = /** @class */ (function () {
         var results = [];
         for (var i in firstCol) {
             var n = parseInt(i);
-            var mattCopy = matt.copyMatt();
+            var mattCopy = matt.copy();
             mattCopy.removeCol(0);
             mattCopy.removeRow(n);
             var modifier = Math.pow(-1, (n + 1) + 1);
@@ -68,6 +68,52 @@ var Det = /** @class */ (function () {
             results.push(item1 * item2);
         }
         return results.reduce(function (acc, crr) { return acc + crr; });
+    };
+    Det.prototype.chioRule = function (matt) {
+        this.validate(matt);
+        var firstCol = matt.getCol(0);
+        var firstRow = matt.getRow(0);
+        var mattCopy = matt.copy();
+        var recursive = false;
+        var MCM = mattCopy.matt;
+        var newMatt = [];
+        firstCol.shift();
+        firstRow.shift();
+        mattCopy.removeCol(0);
+        mattCopy.removeRow(0);
+        for (var i in MCM) {
+            var n1 = parseInt(i);
+            if (n1 === 0) {
+                continue;
+            }
+            else {
+                n1--;
+            }
+            var marginX = firstCol[n1];
+            newMatt.push([]);
+            for (var j in MCM[n1]) {
+                var n2 = parseInt(j);
+                if (n2 === 0) {
+                    continue;
+                }
+                else {
+                    n2--;
+                }
+                var marginY = firstRow[n2];
+                var item = MCM[i][j];
+                newMatt[n1].push(item - (marginX * marginY));
+            }
+        }
+        var resultMatt = new _matt_1.default(newMatt, true);
+        if (resultMatt.rows > 3 && resultMatt.rows != matt.rows) {
+            recursive = true;
+        }
+        if (recursive) {
+            return this.chioRule(resultMatt);
+        }
+        else if (resultMatt.rows === 3) {
+            return this.of3x3(resultMatt);
+        }
     };
     return Det;
 }());

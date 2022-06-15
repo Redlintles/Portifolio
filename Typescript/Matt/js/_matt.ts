@@ -92,6 +92,16 @@ class Matt implements _Matt {
       return "any"
     }
   }
+  firstOccOf(el: any):any{
+    for(let i of this.matt) {
+      for(let j of i){
+        if(j === el) {
+          return [i,j]
+        }
+      }
+    }
+    return -1
+  }
   getRow(n: number): any[] {
     
     n = this.validate(n,"row");
@@ -207,7 +217,7 @@ class Matt implements _Matt {
       }
     }
   }
-  printMatt():void {
+  print():void {
     console.log("\n")
     console.log("A Matriz é:")
     for(let i of this.matt) {
@@ -228,7 +238,7 @@ class Matt implements _Matt {
     }
     console.log("\n");
   }
-  copyMatt() {
+  copy() {
     let newMatt: matt = [];
     for(let i in this.matt) {
       newMatt.push([]);
@@ -237,6 +247,29 @@ class Matt implements _Matt {
       }
     }
     return new Matt(newMatt,this.isMutable)
+  }
+  switchRows(row: number, n:number):void {
+    let toMove = this.getRow(row);
+    let newPosition = row+n;
+    if(newPosition < 0) {
+      newPosition = 0;
+    } else if (newPosition >= this.rows) {
+      newPosition = this.rows-1;
+    }
+    let target = this.getRow(newPosition);
+    
+    let newMatt: matt = [];
+    
+    for(let i of this.matt) {
+      if(i === target) {
+        newMatt.push(toMove)
+      } else if(i === toMove) {
+        newMatt.push(target)
+      } else {
+        newMatt.push(i)
+      }
+    }
+    this.matt = newMatt;
   }
 }
 export default Matt
