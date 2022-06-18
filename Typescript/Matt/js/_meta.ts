@@ -1,6 +1,13 @@
 export type matt<T = any> = Array<T[]>;
 export type mapCallback = (scope: any[],unity: number) => any[];
 
+export interface Element {
+  col: any[];
+  row: any[];
+  value: any;
+  type: string;
+}
+
 export interface _Matt {
   matt: matt
   getCol(n: number): any[]
@@ -17,6 +24,7 @@ export interface _Matt {
   copy(): _Matt;
   switchRows(row: number, n: number): void
   firstOccOf(el: any): any;
+  getElement(row: number, col: number): Element;
   get cols(): number
   get rows(): number
   get isSquare(): boolean
@@ -33,7 +41,16 @@ export interface _Det {
   of3x3(matt: _Matt): number
   laPlace(matt: _Matt): number
   chioRule(matt: _Matt): number
-  // gaussElimination(matt: _Matt): number
+  gaussElimination(matt: _Matt): number
+}
+
+export interface _MattOps {
+  sum(matt1: _Matt, matt2: _Matt): _Matt
+  sub(matt1: _Matt, matt2: _Matt): _Matt
+  mult(matt1: _Matt, matt2: _Matt): _Matt
+  invert(matt: _Matt): _Matt
+  
+  
 }
 
 

@@ -1,23 +1,21 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var _matt_1 = require("./_matt");
+var _matt_1 = __importDefault(require("./_matt"));
+var _decorators_1 = require("./_decorators");
 var Det = /** @class */ (function () {
     function Det() {
     }
-    Det.prototype.validate = function (matt, n) {
-        if (n === void 0) { n = 0; }
-        if (!(matt.isSquare)) {
-            throw new Error("Apenas Matrizes Quadradas possuem determinantes!");
-        }
-        else if (n && !(n === matt.rows)) {
-            throw new Error("A Matriz Passada n\u00E3o \u00E9 ".concat(n, "x").concat(n, "!"));
-        }
-        else if (!(matt.isSet && matt.mattType === "number")) {
-            throw new Error("A matriz deve conter apenas números entre seus itens!");
-        }
-    };
     Det.prototype.of2x2 = function (matt) {
-        this.validate(matt, 2);
+        //this.validate(matt,2);
         var diag1 = matt.diag;
         var diag2 = matt.secDiag;
         var result1 = diag1.reduce(function (acc, crr) { return acc * crr; }, 1);
@@ -25,8 +23,7 @@ var Det = /** @class */ (function () {
         return result1 - result2;
     };
     Det.prototype.of3x3 = function (matt) {
-        matt = new _matt_1.default(matt.matt, true);
-        this.validate(matt, 3);
+        matt = matt.copy();
         var diags = [];
         var secDiags = [];
         for (var i = 0; i < 3; i++) {
@@ -43,7 +40,6 @@ var Det = /** @class */ (function () {
         if (matt.rows < 4) {
             throw new Error("o Uso ideal do teorema de La Place é para matrizes grandes, use métodos mais simples para matrizes menores!");
         }
-        this.validate(matt);
         var firstCol = matt.getCol(0);
         var coeficients = [];
         var results = [];
@@ -108,13 +104,69 @@ var Det = /** @class */ (function () {
         if (resultMatt.rows > 3 && resultMatt.rows != matt.rows) {
             recursive = true;
         }
+        var result = Infinity;
         if (recursive) {
-            return this.chioRule(resultMatt);
+            result = this.chioRule(resultMatt);
         }
         else if (resultMatt.rows === 3) {
-            return this.of3x3(resultMatt);
+            result = this.of3x3(resultMatt);
         }
+        return result;
     };
+    Det.prototype.gaussElimination = function (matt) {
+        var mainDiag = matt.diag;
+        var mattCopy = matt.copy();
+        var MCM = mattCopy.matt;
+        var newMatt = [];
+        for (var i = 0; i < mattCopy.rows - 1; i++) {
+            var keyObj = mattCopy.getElement(i, i);
+            var pivot = keyObj.value;
+            var pivotRow = keyObj.row;
+            var pivotCol = keyObj.col;
+            if (i === 0) {
+                newMatt.push(mattCopy.getRow(i));
+            }
+            if (pivot === 0) { }
+            for (var j = 0; i <= j; i++) {
+                pivotCol.shift();
+                pivotCol.unshift("GaussElim");
+            }
+            console.log(pivotCol);
+            for (var j in pivotCol) {
+                var n = parseInt(j);
+                if (pivotCol[j] != "GaussElim" && pivotCol[j] != 0) {
+                    var row = mattCopy.getRow(n);
+                    var modifier = (pivotCol[j] / pivot);
+                    for (var _i = 0, pivotRow_1 = pivotRow; _i < pivotRow_1.length; _i++) {
+                        var k = pivotRow_1[_i];
+                        k *= pivotCol[j];
+                    }
+                    for (var k in row) {
+                        row[k] -= pivotRow[k];
+                    }
+                    newMatt.push(row);
+                }
+            }
+        }
+        var resultMatt = new _matt_1.default(newMatt, true);
+        resultMatt.print();
+        return 1;
+    };
+    __decorate([
+        (0, _decorators_1.validateMatt)(2)
+    ], Det.prototype, "of2x2", null);
+    __decorate([
+        (0, _decorators_1.validateMatt)(3)
+    ], Det.prototype, "of3x3", null);
+    __decorate([
+        (0, _decorators_1.validateMatt)()
+    ], Det.prototype, "laPlace", null);
+    __decorate([
+        (0, _decorators_1.validateMatt)()
+    ], Det.prototype, "chioRule", null);
+    __decorate([
+        (0, _decorators_1.validateMatt)()
+    ], Det.prototype, "gaussElimination", null);
     return Det;
 }());
 exports.default = Det;

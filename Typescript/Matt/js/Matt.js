@@ -1,8 +1,26 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var _matt_1 = require("./_matt");
-var _det_1 = require("./_det");
+var _matt_1 = __importDefault(require("./_matt"));
+var _det_1 = __importDefault(require("./_det"));
 var matt1 = new _matt_1.default([
+    [1, "2"],
+    [0, 1],
+], true);
+var matt2 = new _matt_1.default([
+    [1, -4, 0],
+    [0, 1, 3],
+    [3, 2, 1],
+], true);
+var matt3 = new _matt_1.default([
+    [1, -4, 0, 0],
+    [0, 1, 3, 0],
+    [3, 2, 1, -1],
+    [0, 2, 1, 13]
+], true);
+var matt4 = new _matt_1.default([
     [1, -4, 0, 0, 5],
     [0, 1, 3, 0, 3],
     [3, 2, 1, -1, 2],
@@ -10,9 +28,16 @@ var matt1 = new _matt_1.default([
     [-7, 4, 2, 2, 8]
 ], true);
 var detCalculator = new _det_1.default();
+//matt4.print()
 matt1.print();
-console.log(detCalculator.laPlace(matt1));
-console.log(detCalculator.chioRule(matt1));
+console.log(detCalculator.of2x2(matt1));
+matt2.print();
+console.log(detCalculator.of3x3(matt2));
+matt3.print();
+console.log(detCalculator.laPlace(matt3));
+//console.log(detCalculator.laPlace(matt4));
+//console.log(detCalculator.chioRule(matt4));
+//console.log(detCalculator.gaussElimination(matt4))
 /*
 matt1.rotateCols(1);
 matt1.print()

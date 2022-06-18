@@ -5,6 +5,36 @@ import Det from "./_det";
 const matt1: _Matt = new Matt(
   
   [
+    [1,"2"],
+    [0,1],
+  ],
+    true
+  
+);
+const matt2: _Matt = new Matt(
+  
+  [
+    [1,-4,0],
+    [0,1,3],
+    [3,2,1],
+  ],
+    true
+  
+);
+const matt3: _Matt = new Matt(
+  
+  [
+    [1,-4,0,0],
+    [0,1,3,0],
+    [3,2,1,-1],
+    [0,2,1,13]
+  ],
+    true
+  
+);
+const matt4: _Matt = new Matt(
+  
+  [
     [1,-4,0,0,5],
     [0,1,3,0,3],
     [3,2,1,-1,2],
@@ -16,10 +46,19 @@ const matt1: _Matt = new Matt(
 );
 
 let detCalculator: _Det = new Det();
-matt1.print()
+//matt4.print()
 
-console.log(detCalculator.laPlace(matt1));
-console.log(detCalculator.chioRule(matt1));
+matt1.print();
+console.log(detCalculator.of2x2(matt1));
+matt2.print();
+console.log(detCalculator.of3x3(matt2));
+matt3.print();
+console.log(detCalculator.laPlace(matt3));
+
+//console.log(detCalculator.laPlace(matt4));
+//console.log(detCalculator.chioRule(matt4));
+
+//console.log(detCalculator.gaussElimination(matt4))
 /*
 matt1.rotateCols(1);
 matt1.print()

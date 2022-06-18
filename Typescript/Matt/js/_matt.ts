@@ -1,4 +1,4 @@
-import {_Matt,mapCallback,matt} from "./_meta";
+import {_Matt,mapCallback,matt,Element} from "./_meta";
 
 class Matt implements _Matt {
   matt: matt
@@ -11,7 +11,7 @@ class Matt implements _Matt {
         throw new Error("matt não é uma matriz!")
       }
     }
-    this.matt = matt
+    return matt
   }
   private throwChangableError() {
     if(!(this.isMutable)) {
@@ -38,7 +38,7 @@ class Matt implements _Matt {
       isMutable: boolean = false
     )
     {
-      this.isMatt(matt);
+      this.matt = this.isMatt(matt);
       this.isMutable = isMutable;
     };
   get cols():number{
@@ -105,7 +105,11 @@ class Matt implements _Matt {
   getRow(n: number): any[] {
     
     n = this.validate(n,"row");
-    return this.matt[n];
+    let row: any[] = []
+    for(let i of this.matt[n]) {
+      row.push(i);
+    }
+    return row;
   };
   getCol(n: number): any[] {
     let col: Array<any> = [];
@@ -189,12 +193,18 @@ class Matt implements _Matt {
     }
     if(n > 0) {
       for(let i=0; i < n; i++) {
-        this.matt.unshift(this.matt.pop())
+        let val = this.matt.pop();
+        if(val) {
+          this.matt.unshift(val)
+        }
       }
     }
     else if (n < 0) {
       for(let i=0; i > n; i--) {
-        this.matt.push(this.matt.shift())
+        let val = this.matt.shift();
+        if(val) {
+          this.matt.push(val)
+        }
       }
     }
   }
@@ -206,7 +216,8 @@ class Matt implements _Matt {
     if(n > 0) {
       for(let i of this.matt) {
         for(let j = 0; j<n; j++) {
-          i.unshift(i.pop())
+          let val: any = i.pop()
+          i.unshift(val)
         }
       }
     } else if(n < 0) {
@@ -270,6 +281,17 @@ class Matt implements _Matt {
       }
     }
     this.matt = newMatt;
+  }
+  getElement(row: number,col: number):Element {
+    row = this.validate(row,"row");
+    col = this.validate(col,"col");
+    let obj: Element = {
+      row: this.getRow(row),
+      col: this.getCol(col),
+      value: this.matt[row][col],
+      type: typeof this.matt[row][col]
+    }
+    return obj
   }
 }
 export default Matt

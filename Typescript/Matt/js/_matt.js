@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Matt = /** @class */ (function () {
     function Matt(matt, isMutable) {
         if (isMutable === void 0) { isMutable = false; }
-        this.isMatt(matt);
+        this.matt = this.isMatt(matt);
         this.isMutable = isMutable;
     }
     Matt.prototype.isMatt = function (matt) {
@@ -14,7 +14,7 @@ var Matt = /** @class */ (function () {
                 throw new Error("matt não é uma matriz!");
             }
         }
-        this.matt = matt;
+        return matt;
     };
     Matt.prototype.throwChangableError = function () {
         if (!(this.isMutable)) {
@@ -137,7 +137,12 @@ var Matt = /** @class */ (function () {
     };
     Matt.prototype.getRow = function (n) {
         n = this.validate(n, "row");
-        return this.matt[n];
+        var row = [];
+        for (var _i = 0, _a = this.matt[n]; _i < _a.length; _i++) {
+            var i = _a[_i];
+            row.push(i);
+        }
+        return row;
     };
     ;
     Matt.prototype.getCol = function (n) {
@@ -215,12 +220,18 @@ var Matt = /** @class */ (function () {
         }
         if (n > 0) {
             for (var i = 0; i < n; i++) {
-                this.matt.unshift(this.matt.pop());
+                var val = this.matt.pop();
+                if (val) {
+                    this.matt.unshift(val);
+                }
             }
         }
         else if (n < 0) {
             for (var i = 0; i > n; i--) {
-                this.matt.push(this.matt.shift());
+                var val = this.matt.shift();
+                if (val) {
+                    this.matt.push(val);
+                }
             }
         }
     };
@@ -232,7 +243,8 @@ var Matt = /** @class */ (function () {
             for (var _i = 0, _a = this.matt; _i < _a.length; _i++) {
                 var i = _a[_i];
                 for (var j = 0; j < n; j++) {
-                    i.unshift(i.pop());
+                    var val = i.pop();
+                    i.unshift(val);
                 }
             }
         }
@@ -305,6 +317,17 @@ var Matt = /** @class */ (function () {
             }
         }
         this.matt = newMatt;
+    };
+    Matt.prototype.getElement = function (row, col) {
+        row = this.validate(row, "row");
+        col = this.validate(col, "col");
+        var obj = {
+            row: this.getRow(row),
+            col: this.getCol(col),
+            value: this.matt[row][col],
+            type: typeof this.matt[row][col]
+        };
+        return obj;
     };
     return Matt;
 }());
