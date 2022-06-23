@@ -3,38 +3,86 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var _matt_1 = __importDefault(require("./_matt"));
-var _det_1 = __importDefault(require("./_det"));
-var matt1 = new _matt_1.default([
-    [1, "2"],
+const _matt_1 = __importDefault(require("./_matt"));
+const _det_1 = __importDefault(require("./_det"));
+const _mattOps_1 = __importDefault(require("./_mattOps"));
+const matt1 = new _matt_1.default([
+    [1, 2],
     [0, 1],
 ], true);
-var matt2 = new _matt_1.default([
+const matt2 = new _matt_1.default([
     [1, -4, 0],
     [0, 1, 3],
     [3, 2, 1],
 ], true);
-var matt3 = new _matt_1.default([
+const matt3 = new _matt_1.default([
     [1, -4, 0, 0],
     [0, 1, 3, 0],
     [3, 2, 1, -1],
     [0, 2, 1, 13]
 ], true);
-var matt4 = new _matt_1.default([
-    [1, -4, 0, 0, 5],
-    [0, 1, 3, 0, 3],
-    [3, 2, 1, -1, 2],
-    [0, 2, 1, 13, 1],
-    [-7, 4, 2, 2, 8]
+const matt4 = new _matt_1.default([
+    [1, -4, 0, 0],
+    [0, 1, 3, 0],
+    [3, 2, 1, -1],
+    [0, 2, 1, 13],
+    [-7, 4, 2, 2]
 ], true);
-var detCalculator = new _det_1.default();
+const matt5 = new _matt_1.default([
+    [6, -4, 8, 2],
+    [6, 7, 4, 2],
+    [3, 2, 1, -7],
+    [0, 2, 1, 14],
+    [-7, 4, 2, 2]
+], true);
+const matt9 = new _matt_1.default([
+    [6, -4],
+    [6, 7],
+    [3, 2]
+], true);
+const matt10 = new _matt_1.default([
+    [6, -4, 8],
+    [6, 7, 4]
+], true);
+let detCalculator = new _det_1.default();
 //matt4.print()
+/*
 matt1.print();
 console.log(detCalculator.of2x2(matt1));
 matt2.print();
 console.log(detCalculator.of3x3(matt2));
 matt3.print();
 console.log(detCalculator.laPlace(matt3));
+*/
+let operations = new _mattOps_1.default();
+/*
+matt4.print();
+
+matt5.print();
+let matt6: _Matt = operations.sum(matt4,matt5);
+
+matt6.print()
+
+let matt7: _Matt = operations.sub(matt4,matt5);
+
+matt7.print()
+let matt8: _Matt = operations.invert(matt7);
+matt8.print()
+*/
+/*
+matt9.print()
+matt10.print()
+let matt11: _Matt = operations.mult(matt9,matt10)
+
+
+matt11.print()
+*/
+let matt12 = operations.createMatt({
+    rows: 5,
+    cols: 5,
+    law: "(i*j)+i^2"
+});
+matt12.print();
 //console.log(detCalculator.laPlace(matt4));
 //console.log(detCalculator.chioRule(matt4));
 //console.log(detCalculator.gaussElimination(matt4))

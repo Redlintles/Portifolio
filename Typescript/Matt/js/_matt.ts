@@ -1,24 +1,23 @@
-import {_Matt,mapCallback,matt,Element} from "./_meta";
+import {_Matt,mapCallback,matt,Element,genLaw} from "./_meta";
 
 class Matt implements _Matt {
   matt: matt
-  private isMutable: boolean
+  readonly isMutable: boolean
 
-  private isMatt(matt: matt) {
-    let mainLength = matt[0].length;
+  isMatt(matt: matt) {
+    let mainLength: number = matt[0].length;
     for(let i of matt){
       if(i.length != mainLength) {
-        throw new Error("matt não é uma matriz!")
+        return false
       }
     }
-    return matt
+    return true
   }
   private throwChangableError() {
     if(!(this.isMutable)) {
       throw new Error("A Matriz é Imutável")
     }
   }
-  
   private validate(n: number,dimension: "col" | "row") {
     let message: string = dimension === "col" ? "Essa coluna não existe!" : "Essa linha não existe";
     let scope: number = dimension === "col" ? this.cols : this.rows;
@@ -38,7 +37,12 @@ class Matt implements _Matt {
       isMutable: boolean = false
     )
     {
-      this.matt = this.isMatt(matt);
+      if(this.isMatt(matt)) {
+        this.matt = matt;
+      } else {
+        this.matt = [];
+        throw new Error("Matt não é uma matriz!")
+      }
       this.isMutable = isMutable;
     };
   get cols():number{
@@ -123,9 +127,7 @@ class Matt implements _Matt {
     return col;
   };
   addCol(arr: any[]): void {
-    if(!(this.isMutable)) {
-      throw new Error("Esta Matriz é Imutável")
-    }
+    this.throwChangableError()
     if (arr.length === this.rows) {
       for(let i in arr) {
         this.matt[i].push(arr[i]);
@@ -139,6 +141,7 @@ class Matt implements _Matt {
     }
   }
   removeCol(n: number): void {
+    this.throwChangableError()
     n = this.validate(n,"col");
     let newMatt: matt = [];
     for(let i in this.matt) {
@@ -156,6 +159,7 @@ class Matt implements _Matt {
     this.matt = newMatt;
   }
   removeRow(n: number): void {
+    this.throwChangableError()
     n = this.validate(n,"row");
     let newMatt: matt = [];
     for(let i in this.matt){
@@ -168,7 +172,6 @@ class Matt implements _Matt {
     this.matt = newMatt;
     
   }
-  
   mapRows(callbackFn: mapCallback):matt{
     let newMatt:matt = [];
     
@@ -188,9 +191,7 @@ class Matt implements _Matt {
     return newMatt
   }
   rotateRows(n: number):void {
-    if(!(this.isMutable)) {
-      throw new Error("Esta Matriz é Imutável")
-    }
+    this.throwChangableError()
     if(n > 0) {
       for(let i=0; i < n; i++) {
         let val = this.matt.pop();
@@ -209,9 +210,7 @@ class Matt implements _Matt {
     }
   }
   rotateCols(n: number): void {
-    if(!(this.isMutable)) {
-      throw new Error("Esta Matriz é Imutável")
-    }
+    this.throwChangableError()
     
     if(n > 0) {
       for(let i of this.matt) {
@@ -260,6 +259,7 @@ class Matt implements _Matt {
     return new Matt(newMatt,this.isMutable)
   }
   switchRows(row: number, n:number):void {
+    this.throwChangableError()
     let toMove = this.getRow(row);
     let newPosition = row+n;
     if(newPosition < 0) {

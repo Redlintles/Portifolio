@@ -1,15 +1,24 @@
 export type matt<T = any> = Array<T[]>;
-export type mapCallback = (scope: any[],unity: number) => any[];
+export type mapCallback = (scope: any[],index: number) => any[];
 
-export interface Element {
+interface _Element {
   col: any[];
   row: any[];
   value: any;
   type: string;
 }
 
+export type Element = Readonly<_Element>
+export interface genLaw {
+  law: string
+  rows: number
+  cols: number
+}
+
 export interface _Matt {
   matt: matt
+  isMutable: boolean
+  isMatt(matt: matt): boolean
   getCol(n: number): any[]
   getRow(n: number): any[]
   addCol(arr: any[]): void;
@@ -49,10 +58,7 @@ export interface _MattOps {
   sub(matt1: _Matt, matt2: _Matt): _Matt
   mult(matt1: _Matt, matt2: _Matt): _Matt
   invert(matt: _Matt): _Matt
-  
+  createMatt(law: genLaw): _Matt
   
 }
-
-
-
 

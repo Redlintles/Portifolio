@@ -1,8 +1,8 @@
 import {_Matt,_Det,matt} from "./_meta";
 import Matt from "./_matt";
-import {validateMatt} from "./_decorators";
+import {validateMattDet} from "./_decorators";
 class Det implements _Det {
-  @validateMatt(2)
+  @validateMattDet(2)
   of2x2(matt: _Matt):number {
     //this.validate(matt,2);
     let diag1: number[] = matt.diag;
@@ -12,7 +12,7 @@ class Det implements _Det {
     let result2:number = diag2.reduce((acc,crr) => acc*crr,1);
     return result1-result2;
   }
-  @validateMatt(3)
+  @validateMattDet(3)
   of3x3(matt: _Matt):number {
     matt = matt.copy();
     let diags: number[] = [];
@@ -26,7 +26,7 @@ class Det implements _Det {
     let n2:number = secDiags.reduce((acc,crr)=>{return acc+crr},1);
     return n1-n2
   }
-  @validateMatt()
+  @validateMattDet()
   laPlace(matt: _Matt):number {
     if(matt.rows < 4) {
       throw new Error("o Uso ideal do teorema de La Place é para matrizes grandes, use métodos mais simples para matrizes menores!")
@@ -55,9 +55,8 @@ class Det implements _Det {
     }
     return results.reduce((acc,crr)=>{return acc+crr})
   }  
-  @validateMatt()
+  @validateMattDet()
   chioRule(matt: _Matt):number {
-    this.validate(matt);
     const firstCol:number[] = matt.getCol(0);
     const firstRow:number[] = matt.getRow(0);
     const mattCopy: _Matt = matt.copy();
@@ -105,7 +104,7 @@ class Det implements _Det {
     }
     return result
   }
-  @validateMatt()
+  @validateMattDet()
   gaussElimination(matt: _Matt):number {
     let mainDiag: number[] = matt.diag;
     let mattCopy: _Matt = matt.copy();

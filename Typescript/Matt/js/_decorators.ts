@@ -1,6 +1,6 @@
 import Matt from "./_matt";
 
-export function validateMatt(n: number = 0) {
+export function validateMattDet(n: number = 0) {
   return function
     (
       target: Object,
@@ -29,6 +29,65 @@ export function validateMatt(n: number = 0) {
             }
           }
         }
+        return childFunction.apply(this,args)
+      }
+    }
+}
+
+export function validateMattOps() {
+  return function
+    (
+      target: Object,
+      propertyKey: string | Symbol,
+      descriptor: PropertyDescriptor
+    ) {
+      const childFunction = descriptor.value
+      
+      descriptor.value = function(...args: any[]) {
+        let list: Array<Matt> = [];
+        for(let i of args) {
+          if(i instanceof Matt) {
+            
+            if(!(i.isSet && typeof i.matt[0][0]=== "number")) {
+              throw new Error("Apenas Matrizes Numéricas são aceitas")
+            }
+            list.push(i)
+          }
+        }
+        let mainOrder:number[] = [list[0].rows,list[0].cols]
+        for(let i of list) {
+          let xy: number[] = [i.rows,i.cols]
+          
+          if(!(xy[0]===mainOrder[0]) || !(xy[1]===mainOrder[1])) {
+            throw new Error("As matrizes devem ter as mesmas dimensões!");
+          }
+        }
+        return childFunction.apply(this,args);
+      }
+      
+      
+    }
+}
+
+export function validateMult() {
+  return function(
+    target: Object,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+    ) {
+      const childFunction = descriptor.value;
+      
+      descriptor.value = function(...args: [Matt,Matt]) {
+        for(let i of args) {
+          if(!(i.isSet) || i.getElement(0,0).type != "number") {
+            throw new Error("A Matriz deve conter apenas números entre seus itens!")
+          }
+        }
+        
+        if(args[0].cols != args[1].rows) {
+          throw new Error("A multiplicação de matrizes só pode ser realizada caso o número de colunas da primeira matriz seja igual ao número de linhas da segunda!")
+        }
+        
         return childFunction.apply(this,args)
       }
     }
