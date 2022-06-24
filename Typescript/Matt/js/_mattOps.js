@@ -60,6 +60,17 @@ class MattOps {
         const resultMatt = new _matt_1.default(newMatt, true);
         return resultMatt;
     }
+    div(matt1, matt2) {
+        const inverted = this.invert(matt2);
+        return this.mult(matt1, inverted);
+    }
+    pow(matt, exp) {
+        const arr = Array.from({ length: exp - 1 }, (v, k) => { return matt.copy(); });
+        const resultMatt = arr.reduce((acc, crr) => {
+            return this.mult(acc, crr);
+        }, arr[0]);
+        return resultMatt;
+    }
     invert(matt) {
         const newMatt = [];
         for (let i = 0; i < matt.rows; i++) {
@@ -122,6 +133,9 @@ __decorate([
 __decorate([
     (0, _decorators_1.validateMult)()
 ], MattOps.prototype, "mult", null);
+__decorate([
+    (0, _decorators_1.validateMult)()
+], MattOps.prototype, "div", null);
 __decorate([
     (0, _decorators_1.validateMattOps)()
 ], MattOps.prototype, "invert", null);

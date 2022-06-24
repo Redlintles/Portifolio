@@ -7,8 +7,8 @@ const _matt_1 = __importDefault(require("./_matt"));
 const _det_1 = __importDefault(require("./_det"));
 const _mattOps_1 = __importDefault(require("./_mattOps"));
 const matt1 = new _matt_1.default([
-    [1, 2],
-    [0, 1],
+    [7, 2],
+    [6, 5],
 ], true);
 const matt2 = new _matt_1.default([
     [1, -4, 0],
@@ -82,7 +82,16 @@ let matt12 = operations.createMatt({
     cols: 5,
     law: "(i*j)+i^2"
 });
-matt12.print();
+//matt12.print()
+/*
+matt9.print();
+matt10.print();
+let matt13: _Matt = operations.div(matt9,matt10);
+matt13.print()
+*/
+matt1.print();
+let matt14 = operations.pow(matt1, 2);
+matt14.print();
 //console.log(detCalculator.laPlace(matt4));
 //console.log(detCalculator.chioRule(matt4));
 //console.log(detCalculator.gaussElimination(matt4))

@@ -6,8 +6,8 @@ import MattOps from "./_mattOps"
 const matt1: _Matt = new Matt(
   
   [
-    [1,2],
-    [0,1],
+    [7,2],
+    [6,5],
   ],
     true
   
@@ -116,7 +116,18 @@ let matt12: _Matt = operations.createMatt({
   law: "(i*j)+i^2"
 })
 
-matt12.print()
+//matt12.print()
+/*
+matt9.print();
+matt10.print();
+let matt13: _Matt = operations.div(matt9,matt10);
+matt13.print()
+*/
+matt1.print()
+let matt14: _Matt = operations.pow(matt1,2);
+
+matt14.print()
+
 //console.log(detCalculator.laPlace(matt4));
 //console.log(detCalculator.chioRule(matt4));
 

@@ -59,8 +59,23 @@ class MattOps implements _MattOps {
     
     return resultMatt;
   }
+  @validateMult()
+  div(matt1: _Matt,matt2: _Matt): _Matt {
+    const inverted: _Matt = this.invert(matt2);
+    
+    return this.mult(matt1,inverted);
+  }
+  pow(matt: _Matt,exp: number): _Matt {
+    const arr: Array<_Matt> = Array.from({length: exp-1}, (v,k)=>{return matt.copy()})
+    
+    const resultMatt: _Matt = arr.reduce((acc,crr)=>{
+      return this.mult(acc,crr)
+    },arr[0]);
+    
+    return resultMatt;
+  }  
   @validateMattOps()
-  invert(matt: _Matt) {
+  invert(matt: _Matt): _Matt {
     const newMatt: matt<number> = [];
     
     for(let i = 0; i < matt.rows; i++) {
@@ -121,5 +136,6 @@ class MattOps implements _MattOps {
     const resultMatt: _Matt = new Matt(newMatt,true)
     return resultMatt;
   }
+  
 }
 export default MattOps

@@ -59,6 +59,7 @@ export interface _MattOps {
   mult(matt1: _Matt, matt2: _Matt): _Matt
   invert(matt: _Matt): _Matt
   createMatt(law: genLaw): _Matt
-  
+  div(matt1: _Matt,matt2: _Matt): _Matt
+  pow(matt: _Matt,exp: number): _Matt
 }
 

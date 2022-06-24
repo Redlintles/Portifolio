@@ -1,5 +1,12 @@
 import Matt from "./_matt";
 
+function isNumberMatt(matt: Matt):boolean {
+  if(matt.isSet && matt.getElement(0,0).type === "number") {
+    return true;
+  } else {
+    return false;
+  }
+}
 export function validateMattDet(n: number = 0) {
   return function
     (
@@ -16,8 +23,7 @@ export function validateMattDet(n: number = 0) {
             [
               i.isSquare,
               n?n === i.rows && n === i.cols: true,
-              i.isSet,
-              typeof i.matt[0][0] === "number"
+              isNumberMatt(i)
             ]
             if(tests.indexOf(false) !== -1) {
               throw new Error(
@@ -45,10 +51,12 @@ export function validateMattOps() {
       
       descriptor.value = function(...args: any[]) {
         let list: Array<Matt> = [];
+          
+        
         for(let i of args) {
           if(i instanceof Matt) {
             
-            if(!(i.isSet && typeof i.matt[0][0]=== "number")) {
+            if(!(isNumberMatt(i))) {
               throw new Error("Apenas Matrizes Numéricas são aceitas")
             }
             list.push(i)
@@ -79,7 +87,7 @@ export function validateMult() {
       
       descriptor.value = function(...args: [Matt,Matt]) {
         for(let i of args) {
-          if(!(i.isSet) || i.getElement(0,0).type != "number") {
+          if(!(isNumberMatt(i))) {
             throw new Error("A Matriz deve conter apenas números entre seus itens!")
           }
         }

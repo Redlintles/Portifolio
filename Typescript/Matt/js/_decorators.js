@@ -5,6 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validateMult = exports.validateMattOps = exports.validateMattDet = void 0;
 const _matt_1 = __importDefault(require("./_matt"));
+function isNumberMatt(matt) {
+    if (matt.isSet && matt.getElement(0, 0).type === "number") {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 function validateMattDet(n = 0) {
     return function (target, key, descriptor) {
         const childFunction = descriptor.value;
@@ -14,8 +22,7 @@ function validateMattDet(n = 0) {
                     let tests = [
                         i.isSquare,
                         n ? n === i.rows && n === i.cols : true,
-                        i.isSet,
-                        typeof i.matt[0][0] === "number"
+                        isNumberMatt(i)
                     ];
                     if (tests.indexOf(false) !== -1) {
                         throw new Error(`Uma das Matrizes Passadas não cumpre um ou mais dos requisitos listados abaixo: \n A sua matriz é quadrada?: ${tests[0] ? "Sim" : "Não"}
@@ -36,7 +43,7 @@ function validateMattOps() {
             let list = [];
             for (let i of args) {
                 if (i instanceof _matt_1.default) {
-                    if (!(i.isSet && typeof i.matt[0][0] === "number")) {
+                    if (!(isNumberMatt(i))) {
                         throw new Error("Apenas Matrizes Numéricas são aceitas");
                     }
                     list.push(i);
@@ -59,7 +66,7 @@ function validateMult() {
         const childFunction = descriptor.value;
         descriptor.value = function (...args) {
             for (let i of args) {
-                if (!(i.isSet) || i.getElement(0, 0).type != "number") {
+                if (!(isNumberMatt(i))) {
                     throw new Error("A Matriz deve conter apenas números entre seus itens!");
                 }
             }
