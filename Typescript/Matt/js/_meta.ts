@@ -45,7 +45,7 @@ export interface _Matt {
   
 }
 
-export interface _Det {
+interface _Det {
   of2x2(matt: _Matt): number
   of3x3(matt: _Matt): number
   laPlace(matt: _Matt): number
@@ -53,7 +53,7 @@ export interface _Det {
   gaussElimination(matt: _Matt): number
 }
 
-export interface _MattOps {
+interface _MattOps {
   sum(matt1: _Matt, matt2: _Matt): _Matt
   sub(matt1: _Matt, matt2: _Matt): _Matt
   mult(matt1: _Matt, matt2: _Matt): _Matt

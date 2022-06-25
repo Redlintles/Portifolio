@@ -77,40 +77,39 @@ const matt10: _Matt = new Matt(
   
 );
 
-let detCalculator: _Det = new Det();
+
 //matt4.print()
 /*
 matt1.print();
-console.log(detCalculator.of2x2(matt1));
+console.log(Det.of2x2(matt1));
 matt2.print();
-console.log(detCalculator.of3x3(matt2));
+console.log(Det.of3x3(matt2));
 matt3.print();
-console.log(detCalculator.laPlace(matt3));
+console.log(Det.laPlace(matt3));
 */
-let operations = new MattOps();
 /*
 matt4.print();
 
 matt5.print();
-let matt6: _Matt = operations.sum(matt4,matt5);
+let matt6: _Matt = MattOps.sum(matt4,matt5);
 
 matt6.print()
 
-let matt7: _Matt = operations.sub(matt4,matt5);
+let matt7: _Matt = MattOps.sub(matt4,matt5);
 
 matt7.print()
-let matt8: _Matt = operations.invert(matt7);
+let matt8: _Matt = MattOps.invert(matt7);
 matt8.print()
 */
 /*
 matt9.print()
 matt10.print()
-let matt11: _Matt = operations.mult(matt9,matt10)
+let matt11: _Matt = MattOps.mult(matt9,matt10)
 
 
 matt11.print()
 */
-let matt12: _Matt = operations.createMatt({
+let matt12: _Matt = MattOps.createMatt({
   rows: 5,
   cols: 5,
   law: "(i*j)+i^2"
@@ -120,18 +119,18 @@ let matt12: _Matt = operations.createMatt({
 /*
 matt9.print();
 matt10.print();
-let matt13: _Matt = operations.div(matt9,matt10);
+let matt13: _Matt = MattOps.div(matt9,matt10);
 matt13.print()
 */
 matt1.print()
-let matt14: _Matt = operations.pow(matt1,2);
+let matt14: _Matt = MattOps.pow(matt1,2);
 
 matt14.print()
 
-//console.log(detCalculator.laPlace(matt4));
-//console.log(detCalculator.chioRule(matt4));
+//console.log(Det.laPlace(matt4));
+//console.log(Det.chioRule(matt4));
 
-//console.log(detCalculator.gaussElimination(matt4))
+//console.log(Det.gaussElimination(matt4))
 /*
 matt1.rotateCols(1);
 matt1.print()

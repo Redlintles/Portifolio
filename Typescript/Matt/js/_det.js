@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const _matt_1 = __importDefault(require("./_matt"));
 const _decorators_1 = require("./_decorators");
 class Det {
-    of2x2(matt) {
+    static of2x2(matt) {
         //this.validate(matt,2);
         let diag1 = matt.diag;
         let diag2 = matt.secDiag;
@@ -20,7 +20,7 @@ class Det {
         let result2 = diag2.reduce((acc, crr) => acc * crr, 1);
         return result1 - result2;
     }
-    of3x3(matt) {
+    static of3x3(matt) {
         matt = matt.copy();
         let diags = [];
         let secDiags = [];
@@ -34,7 +34,7 @@ class Det {
         let n2 = secDiags.reduce((acc, crr) => { return acc + crr; }, 1);
         return n1 - n2;
     }
-    laPlace(matt) {
+    static laPlace(matt) {
         if (matt.rows < 4) {
             throw new Error("o Uso ideal do teorema de La Place é para matrizes grandes, use métodos mais simples para matrizes menores!");
         }
@@ -63,7 +63,7 @@ class Det {
         }
         return results.reduce((acc, crr) => { return acc + crr; });
     }
-    chioRule(matt) {
+    static chioRule(matt) {
         const firstCol = matt.getCol(0);
         const firstRow = matt.getRow(0);
         const mattCopy = matt.copy();
@@ -110,7 +110,7 @@ class Det {
         }
         return result;
     }
-    gaussElimination(matt) {
+    static gaussElimination(matt) {
         let mainDiag = matt.diag;
         let mattCopy = matt.copy();
         let MCM = mattCopy.matt;
@@ -151,17 +151,17 @@ class Det {
 }
 __decorate([
     (0, _decorators_1.validateMattDet)(2)
-], Det.prototype, "of2x2", null);
+], Det, "of2x2", null);
 __decorate([
     (0, _decorators_1.validateMattDet)(3)
-], Det.prototype, "of3x3", null);
+], Det, "of3x3", null);
 __decorate([
     (0, _decorators_1.validateMattDet)()
-], Det.prototype, "laPlace", null);
+], Det, "laPlace", null);
 __decorate([
     (0, _decorators_1.validateMattDet)()
-], Det.prototype, "chioRule", null);
+], Det, "chioRule", null);
 __decorate([
     (0, _decorators_1.validateMattDet)()
-], Det.prototype, "gaussElimination", null);
+], Det, "gaussElimination", null);
 exports.default = Det;

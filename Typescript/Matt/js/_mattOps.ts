@@ -1,11 +1,11 @@
-import {_Matt,_MattOps,matt,genLaw} from "./_meta";
+import {_Matt,matt,genLaw} from "./_meta";
 import {validateMattOps,validateMult} from "./_decorators";
 import Matt from "./_matt";
 
 
-class MattOps implements _MattOps {
+class MattOps {
   @validateMattOps()
-  sum(matt1: _Matt,matt2: _Matt):_Matt  {
+  static sum(matt1: _Matt,matt2: _Matt):_Matt  {
     const newMatt: matt<number> = [];
     for(let i=0; i<matt1.rows;i++) {
       newMatt.push([])
@@ -22,7 +22,7 @@ class MattOps implements _MattOps {
     return resultMatt;
   }
   @validateMattOps()
-  sub(matt1: _Matt,matt2: _Matt):_Matt  {
+  static sub(matt1: _Matt,matt2: _Matt):_Matt  {
     const newMatt: matt<number> = [];
     for(let i=0; i<matt1.rows;i++) {
       newMatt.push([])
@@ -40,7 +40,7 @@ class MattOps implements _MattOps {
     return resultMatt;
   }
   @validateMult()
-  mult(matt1: _Matt,matt2: _Matt):_Matt  {
+  static mult(matt1: _Matt,matt2: _Matt):_Matt  {
     const newMatt: matt<number> = [];
     for(let i=0;i<matt1.rows;i++) {
       const targetRow: number[] = matt1.getRow(i);
@@ -60,12 +60,12 @@ class MattOps implements _MattOps {
     return resultMatt;
   }
   @validateMult()
-  div(matt1: _Matt,matt2: _Matt): _Matt {
+  static div(matt1: _Matt,matt2: _Matt): _Matt {
     const inverted: _Matt = this.invert(matt2);
     
     return this.mult(matt1,inverted);
   }
-  pow(matt: _Matt,exp: number): _Matt {
+  static pow(matt: _Matt,exp: number): _Matt {
     const arr: Array<_Matt> = Array.from({length: exp-1}, (v,k)=>{return matt.copy()})
     
     const resultMatt: _Matt = arr.reduce((acc,crr)=>{
@@ -75,7 +75,7 @@ class MattOps implements _MattOps {
     return resultMatt;
   }  
   @validateMattOps()
-  invert(matt: _Matt): _Matt {
+  static invert(matt: _Matt): _Matt {
     const newMatt: matt<number> = [];
     
     for(let i = 0; i < matt.rows; i++) {
@@ -91,7 +91,7 @@ class MattOps implements _MattOps {
     return resultMatt;
     
   }
-  createMatt(gen: genLaw): _Matt {
+  static createMatt(gen: genLaw): _Matt {
     const newMatt: matt<number> = [];
     const alpha: string[] = []
     

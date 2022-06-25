@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const _matt_1 = __importDefault(require("./_matt"));
-const _det_1 = __importDefault(require("./_det"));
 const _mattOps_1 = __importDefault(require("./_mattOps"));
 const matt1 = new _matt_1.default([
     [7, 2],
@@ -44,40 +43,38 @@ const matt10 = new _matt_1.default([
     [6, -4, 8],
     [6, 7, 4]
 ], true);
-let detCalculator = new _det_1.default();
 //matt4.print()
 /*
 matt1.print();
-console.log(detCalculator.of2x2(matt1));
+console.log(Det.of2x2(matt1));
 matt2.print();
-console.log(detCalculator.of3x3(matt2));
+console.log(Det.of3x3(matt2));
 matt3.print();
-console.log(detCalculator.laPlace(matt3));
+console.log(Det.laPlace(matt3));
 */
-let operations = new _mattOps_1.default();
 /*
 matt4.print();
 
 matt5.print();
-let matt6: _Matt = operations.sum(matt4,matt5);
+let matt6: _Matt = MattOps.sum(matt4,matt5);
 
 matt6.print()
 
-let matt7: _Matt = operations.sub(matt4,matt5);
+let matt7: _Matt = MattOps.sub(matt4,matt5);
 
 matt7.print()
-let matt8: _Matt = operations.invert(matt7);
+let matt8: _Matt = MattOps.invert(matt7);
 matt8.print()
 */
 /*
 matt9.print()
 matt10.print()
-let matt11: _Matt = operations.mult(matt9,matt10)
+let matt11: _Matt = MattOps.mult(matt9,matt10)
 
 
 matt11.print()
 */
-let matt12 = operations.createMatt({
+let matt12 = _mattOps_1.default.createMatt({
     rows: 5,
     cols: 5,
     law: "(i*j)+i^2"
@@ -86,15 +83,15 @@ let matt12 = operations.createMatt({
 /*
 matt9.print();
 matt10.print();
-let matt13: _Matt = operations.div(matt9,matt10);
+let matt13: _Matt = MattOps.div(matt9,matt10);
 matt13.print()
 */
 matt1.print();
-let matt14 = operations.pow(matt1, 2);
+let matt14 = _mattOps_1.default.pow(matt1, 2);
 matt14.print();
-//console.log(detCalculator.laPlace(matt4));
-//console.log(detCalculator.chioRule(matt4));
-//console.log(detCalculator.gaussElimination(matt4))
+//console.log(Det.laPlace(matt4));
+//console.log(Det.chioRule(matt4));
+//console.log(Det.gaussElimination(matt4))
 /*
 matt1.rotateCols(1);
 matt1.print()

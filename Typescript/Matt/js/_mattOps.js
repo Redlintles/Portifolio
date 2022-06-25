@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const _decorators_1 = require("./_decorators");
 const _matt_1 = __importDefault(require("./_matt"));
 class MattOps {
-    sum(matt1, matt2) {
+    static sum(matt1, matt2) {
         const newMatt = [];
         for (let i = 0; i < matt1.rows; i++) {
             newMatt.push([]);
@@ -27,7 +27,7 @@ class MattOps {
         const resultMatt = new _matt_1.default(newMatt, true);
         return resultMatt;
     }
-    sub(matt1, matt2) {
+    static sub(matt1, matt2) {
         const newMatt = [];
         for (let i = 0; i < matt1.rows; i++) {
             newMatt.push([]);
@@ -42,7 +42,7 @@ class MattOps {
         const resultMatt = new _matt_1.default(newMatt, true);
         return resultMatt;
     }
-    mult(matt1, matt2) {
+    static mult(matt1, matt2) {
         const newMatt = [];
         for (let i = 0; i < matt1.rows; i++) {
             const targetRow = matt1.getRow(i);
@@ -60,18 +60,18 @@ class MattOps {
         const resultMatt = new _matt_1.default(newMatt, true);
         return resultMatt;
     }
-    div(matt1, matt2) {
+    static div(matt1, matt2) {
         const inverted = this.invert(matt2);
         return this.mult(matt1, inverted);
     }
-    pow(matt, exp) {
+    static pow(matt, exp) {
         const arr = Array.from({ length: exp - 1 }, (v, k) => { return matt.copy(); });
         const resultMatt = arr.reduce((acc, crr) => {
             return this.mult(acc, crr);
         }, arr[0]);
         return resultMatt;
     }
-    invert(matt) {
+    static invert(matt) {
         const newMatt = [];
         for (let i = 0; i < matt.rows; i++) {
             newMatt.push([]);
@@ -84,7 +84,7 @@ class MattOps {
         const resultMatt = new _matt_1.default(newMatt, true);
         return resultMatt;
     }
-    createMatt(gen) {
+    static createMatt(gen) {
         const newMatt = [];
         const alpha = [];
         for (let i = 0; i < 26; i++) {
@@ -126,17 +126,17 @@ class MattOps {
 }
 __decorate([
     (0, _decorators_1.validateMattOps)()
-], MattOps.prototype, "sum", null);
+], MattOps, "sum", null);
 __decorate([
     (0, _decorators_1.validateMattOps)()
-], MattOps.prototype, "sub", null);
+], MattOps, "sub", null);
 __decorate([
     (0, _decorators_1.validateMult)()
-], MattOps.prototype, "mult", null);
+], MattOps, "mult", null);
 __decorate([
     (0, _decorators_1.validateMult)()
-], MattOps.prototype, "div", null);
+], MattOps, "div", null);
 __decorate([
     (0, _decorators_1.validateMattOps)()
-], MattOps.prototype, "invert", null);
+], MattOps, "invert", null);
 exports.default = MattOps;
