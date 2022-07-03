@@ -1,0 +1,11 @@
+{
+  "name": "mattapp",
+  "version": "1.0.0",
+  "description": "site com diversas operacoes envolvendo matrizes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

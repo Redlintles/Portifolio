@@ -1,0 +1,115 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .header-container {
+    @apply flex justify-between items-center bg-primary px-2 py-3 mb-2
+  }
+  .page-title {
+    @apply text-main-yellow font-bold text-2xl
+  }
+  .burger-menu {
+    @apply text-main-yellow text-2xl
+  }
+  .nav-list {
+    @apply hidden
+  }
+  .test-title {
+    @apply text-center text-3xl text-main-yellow font-bold;
+  }
+  .title-container {
+    @apply w-full flex flex-col items-center justify-center mb-2
+  }
+  .test-subtitle {
+    @apply w-full text-center text-xs text-gray-500
+  }
+  .test-wrapper {
+    @apply w-full flex flex-col mb-2
+  }
+  .main-menu {
+    @apply flex justify-center w-full bg-primary items-center
+  }
+  .main-menu__btn-wrapper {
+    @apply flex flex-wrap items-center flex-col
+  }
+  .main-menu__title {
+    @apply text-center mb-2 text-main-yellow text-xl font-bold
+  }
+  .main-menu__btn-container {
+    @apply flex flex-wrap justify-center gap-2
+  }
+  .main-menu__btn {
+    @apply px-4 py-2 text-main-yellow text-sm font-semibold text-center bg-secondary focus:text-secondary focus:bg-main-yellow rounded-sm ring-2 ring-inset ring-main-yellow focus:ring-secondary
+  }
+  #det-btn-wrapper,
+  #ops-btn-wrapper {
+    @apply hidden
+  }
+  .test-wrapper > div {
+    @apply h-half-height w-full
+  }
+  .result-wrapper {
+    @apply flex flex-col
+  }
+  .result-container {
+    @apply bg-secondary flex flex-col items-center justify-center text-main-yellow text-xl font-bold flex-1
+  }
+  .result-top-bar {
+    @apply w-full border-b-4 bg-secondary border-main-yellow flex h-9
+  }
+  .result__matt-container {
+    @apply flex flex-1
+  }
+  .result__matt-item {
+    @apply flex justify-between items-center h-full w-20 border-2 border-main-yellow p-1
+  }
+  .result-matt__title {
+    @apply w-90% text-sm text-ellipsis text-main-yellow overflow-hidden mr-1
+  }
+  .result__plus-btn {
+    @apply w-9 h-9 border-2 border-main-yellow text-green-400 p-1 text-sm
+  }
+  .result-matt__del-btn {
+    @apply w-9 h-9 text-red-500 p-1 text-sm
+  }
+  .exp-wrapper {
+    @apply p-2 flex justify-center items-center flex-col
+  }
+  .exp__title {
+    @apply font-bold my-4 text-3xl
+  }
+  .exp__par {
+    @apply text-sm text-gray-500 leading-tight mb-4
+  }
+  .exp__matt {
+    @apply flex justify-center items-center
+  }
+  .exp-matt__lines {
+    @apply flex flex-col mx-2 items-center justify-center
+  }
+  .exp-matt__bracket {
+    @apply text-9xl text-center
+  }
+  .exp-matt__line {
+    @apply font-bold text-lg mb-2
+  }
+  .footer-copy {
+    @apply text-center text-sm w-full py-2 bg-primary text-main-yellow font-semibold
+  }
+}
+@screen md {
+  .title-container,
+  .test-wrapper,
+  .exp-wrapper {
+    @apply mx-auto w-80%
+  }
+  .test-wrapper {
+    @apply flex-row border-4 border-main-yellow
+  }
+  .test-wrapper > div {
+    @apply w-50% h-500px
+  }
+}
