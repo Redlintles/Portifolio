@@ -1,6 +1,7 @@
 import {_Matt,matt} from "./_meta";
 import Matt from "./_matt";
 import {validateMattDet} from "./_decorators";
+
 class Det {
   @validateMattDet(2)
   static of2x2(matt: _Matt):number {
@@ -57,6 +58,9 @@ class Det {
   }  
   @validateMattDet()
   static chioRule(matt: _Matt):number {
+    if(matt.matt[0][0] != 1) {
+      throw new Error("A regra de Chio não pode ser aplicada em matrizes cujo termo A¹¹ seja diferente de 1")
+    }
     const firstCol:number[] = matt.getCol(0);
     const firstRow:number[] = matt.getRow(0);
     const mattCopy: _Matt = matt.copy();
@@ -98,56 +102,91 @@ class Det {
     }
     let result: number = Infinity;
     if(recursive) {
+      try {
       result = this.chioRule(resultMatt);
+      } catch {
+        result = this.laPlace(resultMatt)
+      }
     } else if(resultMatt.rows === 3){
       result = this.of3x3(resultMatt);
     }
     return result
   }
   @validateMattDet()
-  static gaussElimination(matt: _Matt):number {
-    let mainDiag: number[] = matt.diag;
-    let mattCopy: _Matt = matt.copy();
-    let MCM: matt<number> = mattCopy.matt
-    let newMatt:matt<number> = []
-    for(let i=0; i< mattCopy.rows-1; i++) {
-      let keyObj = mattCopy.getElement(i,i);
-      
-      let pivot: number = keyObj.value
-      let pivotRow = keyObj.row;
-      let pivotCol = keyObj.col;
-      if(i === 0) {
-        newMatt.push(mattCopy.getRow(i))
+  static detTriangle(matt: _Matt): number {
+    matt = matt.copy()
+   let p: number = 1;
+   for (let k = 0; k < matt.rows - 1; k++) {
+      let max: number = Math.abs(matt.matt[k][k]);
+      let maxIndex = k;
+      for (let i = k + 1; i < matt.rows; i++) {
+         if (max < Math.abs(matt.matt[i][k])) {
+            max = Math.abs(matt.matt[i][k]);
+            maxIndex = i;
+         }
       }
-      if(pivot === 0) {}
-      for(let j=0; i<=j; i++) {
-        pivotCol.shift()
-        pivotCol.unshift("GaussElim")
+      if (maxIndex !== k) {
+         let temp;
+         p = p * (-1);
+         for (let j = 0; j < matt.rows; j++) {
+            temp = matt.matt[k][j];
+            matt.matt[k][j] = matt.matt[maxIndex][j];
+            matt.matt[maxIndex][j] = temp;
+         }
       }
-      console.log(pivotCol)
-      for(let j in pivotCol) {
-        let n = parseInt(j)
-        if(pivotCol[j] != "GaussElim" && pivotCol[j] != 0) {
-          let row = mattCopy.getRow(n)
-          let modifier: number = (pivotCol[j]/pivot)
-          for(let k of pivotRow) {
-            k*=pivotCol[j];
-          }
-          for(let k in row) {
-            row[k]-= pivotRow[k];
-          }  
-          newMatt.push(row)
-        }
-        
+      if (matt.matt[k][k] === 0) {
+         return 0;
       }
-    
-      
+      else {
+         for (let m = k + 1; m < matt.rows; m++) {
+            let F = (-1) * matt.matt[m][k] / matt.matt[k][k];
+            matt.matt[m][k] = 0;
+            for (let l = k + 1; l < matt.rows; l++) {
+               matt.matt[m][l] = matt.matt[m][l] + F * matt.matt[k][l];
+            }
+         }
+      }
+   }
+   let det = matt.diag.reduce((acc,crr)=>{return acc*crr},1);
+   return Math.round(parseFloat((p*det).toString()));
+
+  }
+  @validateMattDet()
+  static vander(matt: _Matt):number {
+    const row1: number[] = matt.getRow(0)
+    const col1: number[] = matt.getCol(0)
+    const msg: string = "A matriz passada não se trata de uma matriz de vandermonde"
+    let base: number[];
+    let test: number[];
+    if(row1.reduce((acc,crr)=>{return acc+crr}
+      )=== row1.length) {
+      base = matt.getRow(1);
+      test = matt.getCol(0);
+    }else if(col1.reduce((acc,crr)=>{return acc+crr})=== col1.length) {
+      base = matt.getCol(1)
+      test = matt.getRow(0)
+    } else {
+      throw new Error(msg)
     }
     
-    let resultMatt: _Matt = new Matt(newMatt,true);
-    resultMatt.print()
-    
-    return 1
+    let first: number = base[0];
+    for(let i in test) {
+      let n: number = parseInt(i);
+      if(Math.pow(first,n)!= test[n]) {
+        console.log(Math.pow(first,n),test[n])
+        throw new Error(msg);
+      }
+    }
+    let resultArr: number[] = [];
+    for(let i in base) {
+      let n = base[i];
+      for(let j of base.slice(parseInt(i)+1)) {
+        resultArr.push(j-n)
+      }
+    }
+    let result: number = resultArr.reduce((acc,crr)=>{return acc*crr},1)
+    return result
   }
+  
 }
 export default Det

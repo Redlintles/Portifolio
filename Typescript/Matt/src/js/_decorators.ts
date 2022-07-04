@@ -1,6 +1,6 @@
 import Matt from "./_matt";
 
-function isNumberMatt(matt: Matt):boolean {
+export function isNumberMatt(matt: Matt):boolean {
   if(matt.isSet && matt.getElement(0,0).type === "number") {
     return true;
   } else {

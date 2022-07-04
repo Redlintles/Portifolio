@@ -123,6 +123,28 @@ class MattOps {
         const resultMatt = new _matt_1.default(newMatt, true);
         return resultMatt;
     }
+    static realMult(matt, n) {
+        const newMatt = [];
+        for (let i of matt.matt) {
+            let newRow = i.map((element) => {
+                return element * n;
+            });
+            newMatt.push(newRow);
+        }
+        const resultMatt = new _matt_1.default(newMatt, true);
+        return resultMatt;
+    }
+    static amplify(matt1, matt2) {
+        if (matt1.rows !== matt2.rows) {
+            throw new Error("As matrizes precisam ter o mesmo número de linhas!");
+        }
+        const mattCopy = matt1.copy();
+        for (let i = 0; i < matt2.cols; i++) {
+            let col = matt2.getCol(i);
+            mattCopy.addCol(col);
+        }
+        return mattCopy;
+    }
 }
 __decorate([
     (0, _decorators_1.validateMattOps)()
@@ -139,4 +161,7 @@ __decorate([
 __decorate([
     (0, _decorators_1.validateMattOps)()
 ], MattOps, "invert", null);
+__decorate([
+    (0, _decorators_1.validateMattOps)()
+], MattOps, "realMult", null);
 exports.default = MattOps;

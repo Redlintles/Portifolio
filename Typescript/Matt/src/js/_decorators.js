@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateMult = exports.validateMattOps = exports.validateMattDet = void 0;
+exports.validateMult = exports.validateMattOps = exports.validateMattDet = exports.isNumberMatt = void 0;
 const _matt_1 = __importDefault(require("./_matt"));
 function isNumberMatt(matt) {
     if (matt.isSet && matt.getElement(0, 0).type === "number") {
@@ -13,6 +13,7 @@ function isNumberMatt(matt) {
         return false;
     }
 }
+exports.isNumberMatt = isNumberMatt;
 function validateMattDet(n = 0) {
     return function (target, key, descriptor) {
         const childFunction = descriptor.value;

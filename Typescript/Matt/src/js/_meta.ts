@@ -44,13 +44,13 @@ export interface _Matt {
 
   
 }
-
+type detMethod = (matt: _Matt) => number;
 interface _Det {
-  of2x2(matt: _Matt): number
-  of3x3(matt: _Matt): number
-  laPlace(matt: _Matt): number
-  chioRule(matt: _Matt): number
-  gaussElimination(matt: _Matt): number
+  of2x2: detMethod
+  of3x3: detMethod
+  laPlace: detMethod
+  chioRule: detMethod
+  detTriangle: detMethod
 }
 
 interface _MattOps {
@@ -61,5 +61,7 @@ interface _MattOps {
   createMatt(law: genLaw): _Matt
   div(matt1: _Matt,matt2: _Matt): _Matt
   pow(matt: _Matt,exp: number): _Matt
+  realMult(matt: _Matt,n: number): _Matt
+  amplify(matt1: _Matt,matt2: _Matt): _Matt
 }
 

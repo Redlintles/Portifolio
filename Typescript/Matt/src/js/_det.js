@@ -64,6 +64,9 @@ class Det {
         return results.reduce((acc, crr) => { return acc + crr; });
     }
     static chioRule(matt) {
+        if (matt.matt[0][0] != 1) {
+            throw new Error("A regra de Chio não pode ser aplicada em matrizes cujo termo A¹¹ seja diferente de 1");
+        }
         const firstCol = matt.getCol(0);
         const firstRow = matt.getRow(0);
         const mattCopy = matt.copy();
@@ -103,50 +106,89 @@ class Det {
         }
         let result = Infinity;
         if (recursive) {
-            result = this.chioRule(resultMatt);
+            try {
+                result = this.chioRule(resultMatt);
+            }
+            catch (_a) {
+                result = this.laPlace(resultMatt);
+            }
         }
         else if (resultMatt.rows === 3) {
             result = this.of3x3(resultMatt);
         }
         return result;
     }
-    static gaussElimination(matt) {
-        let mainDiag = matt.diag;
-        let mattCopy = matt.copy();
-        let MCM = mattCopy.matt;
-        let newMatt = [];
-        for (let i = 0; i < mattCopy.rows - 1; i++) {
-            let keyObj = mattCopy.getElement(i, i);
-            let pivot = keyObj.value;
-            let pivotRow = keyObj.row;
-            let pivotCol = keyObj.col;
-            if (i === 0) {
-                newMatt.push(mattCopy.getRow(i));
+    static detTriangle(matt) {
+        matt = matt.copy();
+        let p = 1;
+        for (let k = 0; k < matt.rows - 1; k++) {
+            let max = Math.abs(matt.matt[k][k]);
+            let maxIndex = k;
+            for (let i = k + 1; i < matt.rows; i++) {
+                if (max < Math.abs(matt.matt[i][k])) {
+                    max = Math.abs(matt.matt[i][k]);
+                    maxIndex = i;
+                }
             }
-            if (pivot === 0) { }
-            for (let j = 0; i <= j; i++) {
-                pivotCol.shift();
-                pivotCol.unshift("GaussElim");
+            if (maxIndex !== k) {
+                let temp;
+                p = p * (-1);
+                for (let j = 0; j < matt.rows; j++) {
+                    temp = matt.matt[k][j];
+                    matt.matt[k][j] = matt.matt[maxIndex][j];
+                    matt.matt[maxIndex][j] = temp;
+                }
             }
-            console.log(pivotCol);
-            for (let j in pivotCol) {
-                let n = parseInt(j);
-                if (pivotCol[j] != "GaussElim" && pivotCol[j] != 0) {
-                    let row = mattCopy.getRow(n);
-                    let modifier = (pivotCol[j] / pivot);
-                    for (let k of pivotRow) {
-                        k *= pivotCol[j];
+            if (matt.matt[k][k] === 0) {
+                return 0;
+            }
+            else {
+                for (let m = k + 1; m < matt.rows; m++) {
+                    let F = (-1) * matt.matt[m][k] / matt.matt[k][k];
+                    matt.matt[m][k] = 0;
+                    for (let l = k + 1; l < matt.rows; l++) {
+                        matt.matt[m][l] = matt.matt[m][l] + F * matt.matt[k][l];
                     }
-                    for (let k in row) {
-                        row[k] -= pivotRow[k];
-                    }
-                    newMatt.push(row);
                 }
             }
         }
-        let resultMatt = new _matt_1.default(newMatt, true);
-        resultMatt.print();
-        return 1;
+        let det = matt.diag.reduce((acc, crr) => { return acc * crr; }, 1);
+        return Math.round(parseFloat((p * det).toString()));
+    }
+    static vander(matt) {
+        const row1 = matt.getRow(0);
+        const col1 = matt.getCol(0);
+        const msg = "A matriz passada não se trata de uma matriz de vandermonde";
+        let base;
+        let test;
+        if (row1.reduce((acc, crr) => { return acc + crr; }) === row1.length) {
+            base = matt.getRow(1);
+            test = matt.getCol(0);
+        }
+        else if (col1.reduce((acc, crr) => { return acc + crr; }) === col1.length) {
+            base = matt.getCol(1);
+            test = matt.getRow(0);
+        }
+        else {
+            throw new Error(msg);
+        }
+        let first = base[0];
+        for (let i in test) {
+            let n = parseInt(i);
+            if (Math.pow(first, n) != test[n]) {
+                console.log(Math.pow(first, n), test[n]);
+                throw new Error(msg);
+            }
+        }
+        let resultArr = [];
+        for (let i in base) {
+            let n = base[i];
+            for (let j of base.slice(parseInt(i) + 1)) {
+                resultArr.push(j - n);
+            }
+        }
+        let result = resultArr.reduce((acc, crr) => { return acc * crr; }, 1);
+        return result;
     }
 }
 __decorate([
@@ -163,5 +205,8 @@ __decorate([
 ], Det, "chioRule", null);
 __decorate([
     (0, _decorators_1.validateMattDet)()
-], Det, "gaussElimination", null);
+], Det, "detTriangle", null);
+__decorate([
+    (0, _decorators_1.validateMattDet)()
+], Det, "vander", null);
 exports.default = Det;

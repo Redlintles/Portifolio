@@ -1,5 +1,5 @@
 import {_Matt,matt,genLaw} from "./_meta";
-import {validateMattOps,validateMult} from "./_decorators";
+import {isNumberMatt,validateMattOps,validateMult} from "./_decorators";
 import Matt from "./_matt";
 
 
@@ -136,6 +136,31 @@ class MattOps {
     const resultMatt: _Matt = new Matt(newMatt,true)
     return resultMatt;
   }
-  
+  @validateMattOps()
+  static realMult(matt: _Matt, n: number):_Matt{
+    const newMatt: matt<number> = [];
+    
+    for(let i of matt.matt) {
+      let newRow = i.map((element)=>{
+        return element*n;
+      })
+      newMatt.push(newRow);
+    }
+    
+    const resultMatt: _Matt = new Matt(newMatt,true)
+    return resultMatt;
+  }
+  static amplify(matt1:_Matt,matt2:_Matt):_Matt{
+    if(matt1.rows !== matt2.rows) {
+      throw new Error("As matrizes precisam ter o mesmo número de linhas!")
+    }
+    const mattCopy = matt1.copy()
+    for(let i = 0; i < matt2.cols; i++) {
+      let col: any[] = matt2.getCol(i)
+      mattCopy.addCol(col)
+    }
+    return mattCopy;
+    
+  }
 }
 export default MattOps
