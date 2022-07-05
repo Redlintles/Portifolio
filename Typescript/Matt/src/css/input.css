@@ -6,7 +6,7 @@
 
 @layer components {
   .header-container {
-    @apply flex justify-between items-center bg-primary px-2 py-3 mb-2
+    @apply flex justify-between items-center bg-secondary px-2 py-3 mb-2
   }
   .page-title {
     @apply text-main-yellow font-bold text-2xl
@@ -30,22 +30,38 @@
     @apply w-full flex flex-col mb-2
   }
   .main-menu {
-    @apply flex justify-center w-full bg-primary items-center
+    @apply flex justify-center w-full bg-secondary 
   }
   .main-menu__btn-wrapper {
-    @apply flex flex-wrap items-center flex-col
+    @apply flex flex-wrap flex-col items-center justify-center 
+  }
+  #main-btn-wrapper {
+    @apply hidden
   }
   .main-menu__title {
-    @apply text-center mb-2 text-main-yellow text-xl font-bold
+    @apply text-center text-main-yellow text-xl font-bold min-h-min w-full leading-loose
   }
   .main-menu__btn-container {
-    @apply flex flex-wrap justify-center gap-2
+    @apply flex flex-wrap flex-1 overflow-auto
   }
   .main-menu__btn {
-    @apply px-4 py-2 text-main-yellow text-sm font-semibold text-center bg-secondary focus:text-secondary focus:bg-main-yellow rounded-sm ring-2 ring-inset ring-main-yellow focus:ring-secondary
+    @apply w-1/2 h-2/3 p-2 text-center bg-white shadow-none focus:bg-secondary focus:shadow-2xl focus:shadow-black hover:shadow-md duration-500 border border-gray-300 flex flex-col justify-center items-center
+  }
+  .main-menu__btn span {
+    @apply text-xl font-bold mb-2 text-primary
+  }
+  .main-menu__btn h6 {
+    @apply text-sm text-primary font-semibold mb-2 focus:text-main-yellow
+  }
+  .main-menu__btn p {
+    @apply text-xs font-light text-gray-500
+    
+  }
+  .main-menu__btn:focus > * {
+    @apply text-main-yellow
   }
   #det-btn-wrapper,
-  #ops-btn-wrapper {
+  /*#ops-btn-wrapper*/ {
     @apply hidden
   }
   .test-wrapper > div {
@@ -58,22 +74,22 @@
     @apply bg-secondary flex flex-col items-center justify-center text-main-yellow text-xl font-bold flex-1
   }
   .result-top-bar {
-    @apply w-full border-b-4 bg-secondary border-main-yellow flex h-9
+    @apply w-full border-4 bg-secondary border-main-yellow flex h-9
   }
   .result__matt-container {
     @apply flex flex-1
   }
   .result__matt-item {
-    @apply flex justify-between items-center h-full w-20 border-2 border-main-yellow p-1
+    @apply flex justify-between items-center h-full w-20 border-r-4 border-main-yellow p-1
   }
   .result-matt__title {
     @apply w-90% text-sm text-ellipsis text-main-yellow overflow-hidden mr-1
   }
   .result__plus-btn {
-    @apply w-9 h-9 border-2 border-main-yellow text-green-400 p-1 text-sm
+    @apply w-9 h-9 border-l-4 border-main-yellow text-green-400 p-1 text-sm
   }
   .result-matt__del-btn {
-    @apply w-9 h-9 text-red-500 p-1 text-sm
+    @apply w-5 h-9 text-red-500 p-1 text-sm
   }
   .exp-wrapper {
     @apply p-2 flex justify-center items-center flex-col
@@ -85,7 +101,7 @@
     @apply text-sm text-gray-500 leading-tight mb-4
   }
   .exp__matt {
-    @apply flex justify-center items-center
+    @apply flex justify-center items-center mb-2
   }
   .exp-matt__lines {
     @apply flex flex-col mx-2 items-center justify-center
@@ -97,7 +113,7 @@
     @apply font-bold text-lg mb-2
   }
   .footer-copy {
-    @apply text-center text-sm w-full py-2 bg-primary text-main-yellow font-semibold
+    @apply text-center text-sm w-full py-2 bg-secondary text-main-yellow font-semibold
   }
 }
 @screen md {
@@ -108,6 +124,12 @@
   }
   .test-wrapper {
     @apply flex-row border-4 border-main-yellow
+  }
+  .main-menu__btn {
+    @apply h-1/5 w-1/3
+  }
+  .result-top-bar {
+    @apply border-none border-b-4
   }
   .test-wrapper > div {
     @apply w-50% h-500px
