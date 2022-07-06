@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Matt - Gerencie Matrizes Facilmente</title>
   <link rel="stylesheet" href="css/output.css" type="text/css" media="all" />
-  <script src="./js/show-menus.js" defer></script>
+  <script src="./js/menu-togglers.js" defer></script>
 </head>
 <body>
   <header>
@@ -39,12 +39,12 @@
           <div class ="main-menu__btn-wrapper" id="main-btn-wrapper">
             <h3 class="main-menu__title">Escolha Uma Operação</h3>
             <div class="main-menu__btn-container">
-            <button class="main-menu__btn">
+            <button class="main-menu__btn" id="det-loader">
               <span>D</span>
               <h6>Determinantes</h6>
               <p>Possuímos várias formas de se calcular determinantes</p>
             </button>
-            <button class="main-menu__btn">
+            <button class="main-menu__btn" id="ops-loader">
               <span><i class="fas fa-calculator"></i></span>
               <h6>Operações</h6>
               <p>Possuímos diversas Operações com matrizes</p>
@@ -62,7 +62,11 @@
             </div>
           </div>
           <div class ="main-menu__btn-wrapper" id="det-btn-wrapper">
-            <h3 class="main-menu__title">Determinantes de Matrizes</h3>
+            <div class="main-menu__title-container">
+              <button class="return-btn"><i class="fas fa-backward"></i></button>
+              <h3 class="main-menu__title">Determinantes de Matrizes</h3>
+              <button class="historic-btn"><i class="fas fa-timeline"></i></button>
+            </div>
             <div class="main-menu__btn-container">
             <button class="main-menu__btn">
               <span>2x2</span>
@@ -100,7 +104,12 @@
             </div>
           </div>
           <div class="main-menu__btn-wrapper" id="ops-btn-wrapper">
-            <h3 class="main-menu__title">Operações com Matrizes</h3>
+            <div class="main-menu__title-container">
+              <button class="return-btn"><i class="fas fa-backward"></i></button>
+              <h3 class="main-menu__title">Operações com Matrizes</h3>
+              <button class="historic-btn"><i class="fas fa-timeline"></i></button>
+            </div>
+            
             <div class="main-menu__btn-container">
               <button class="main-menu__btn">
                 <span>
@@ -117,7 +126,7 @@
               <button class="main-menu__btn">
                 <span><i class="fas fa-xmark"></i></span>
                 <h6>Multiplicação de Matrizes</h6>
-                <p>Multiplica uma matrizes pela outra</p>
+                <p>Multiplica uma matriz pela outra</p>
               </button>
               <button class="main-menu__btn">
                 <span>Matt*N</span>
@@ -126,7 +135,7 @@
               </button>
               <button class="main-menu__btn">
                 <span><i class="fas fa-divide"></i></span>
-                <h6>"Dividir uma Matriz"</h6>
+                <h6>"Dividir" uma Matriz</h6>
                 <p>Multiplica a primeira matriz pelo inverso da segunda</p>
               </button>
               
@@ -142,8 +151,13 @@
               </button>
               <button class="main-menu__btn">
                 <span>[Matt1,Matt2]</span>
-                <h6>Amplificar Matrizes</h6>
+                <h6>Matriz Ampliada</h6>
                 <p>Gera uma união entre as colunas de duas matrizes diferentes se i1=i2</p>
+              </button>
+              <button class="main-menu__btn">
+                <span><i class="fas fa-rotate"></i></span>
+                <h6>Matriz Transposta</h6>
+                <p>Gera uma nova matriz onde as colunas de A são trocadas por suas linhas</p>
               </button>
               
             </div>
