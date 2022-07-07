@@ -1,9 +1,8 @@
-type element = HTMLElement | null
-type collection = NodeListOf<Element> | null
+import {elm} from "./_meta"
 
 function navListToggler() {
-  const burgerMenu: element = document.querySelector("nav button.burger-menu");
-  const navList: element = document.querySelector("nav ul.nav-list");
+  const burgerMenu: elm = document.querySelector("nav button.burger-menu");
+  const navList: elm = document.querySelector("nav ul.nav-list");
   if(burgerMenu && navList) {
     burgerMenu.addEventListener("click", function(){
       navList.classList.toggle("nav-list--visible")
@@ -11,10 +10,10 @@ function navListToggler() {
   }
 }
 function testWrapperToggler(id: string) {
-  const parent: element = document.querySelector(id)
-  const closeBtn: element = document.querySelector(
+  const parent: elm = document.querySelector(id)
+  const closeBtn: elm = document.querySelector(
     `${id} .return-btn`);
-  const mainBtnWrapper: element = document.querySelector("#main-btn-wrapper")
+  const mainBtnWrapper: elm = document.querySelector("#main-btn-wrapper")
   if(closeBtn && mainBtnWrapper && parent) {
     closeBtn.addEventListener("click",function(){
       parent.style.display = "none"
@@ -26,10 +25,10 @@ function testWrapperToggler(id: string) {
   }
 }
 function loadSection(id: string,target: string){
-  const btn: element = document.querySelector(
+  const btn: elm = document.querySelector(
     `#main-btn-wrapper ${id}`);
-  const mainBtnWrapper = document.querySelector("#main-btn-wrapper")
-  const targetEl: element = document.querySelector(
+  const mainBtnWrapper: elm = document.querySelector("#main-btn-wrapper")
+  const targetEl: elm = document.querySelector(
     `.main-menu ${target}`);
   if(btn && mainBtnWrapper && targetEl) {
     btn.addEventListener("click",function(){

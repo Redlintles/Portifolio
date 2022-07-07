@@ -1,5 +1,18 @@
 export type matt<T = any> = Array<T[]>;
 export type mapCallback = (scope: any[],index: number) => any[];
+export type elm = HTMLElement | null;
+
+
+export interface BuildObj {
+  title: string
+  innerCode: string
+}
+export interface _Modal {
+  father: elm
+  buildObj: BuildObj
+  builder(): void
+  addEvents(): void
+}
 
 interface _Element {
   col: any[];

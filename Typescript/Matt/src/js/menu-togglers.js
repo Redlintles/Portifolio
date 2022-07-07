@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 function navListToggler() {
     const burgerMenu = document.querySelector("nav button.burger-menu");
     const navList = document.querySelector("nav ul.nav-list");
