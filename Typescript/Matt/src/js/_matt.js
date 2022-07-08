@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 class Matt {
     constructor(matt, isMutable = false) {
         if (this.isMatt(matt)) {
@@ -289,4 +287,4 @@ class Matt {
         return obj;
     }
 }
-exports.default = Matt;
+export default Matt;

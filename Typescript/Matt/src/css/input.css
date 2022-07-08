@@ -157,11 +157,38 @@
   .modal-body {
     @apply px-4 flex flex-col justify-center items-center h-8_12
   }
+  .modal-body h6 {
+    @apply font-semibold text-lg text-primary my-2
+  }
   .modal-footer {
     @apply flex justify-between px-4 py-2 border-t border-gray-300 h-2_12
   }
   .modal-btn {
     @apply px-4 py-2 flex justify-center text-center bg-secondary text-sm text-main-yellow items-center font-semibold rounded-md border border-white focus:hover:bg-primary duration-500 focus:hover:text-white
+  }
+  .modal-input,.field-number{
+    @apply outline-main-yellow border border-main-yellow bg-secondary rounded-sm text-main-yellow pl-2 font-semibold w-12
+  }
+  .rc-input-container {
+    @apply flex justify-center mb-2
+  }
+  .rc-label {
+    @apply text-primary font-bold mr-2 w-16
+  }
+  .raw-field {
+    @apply flex mr-1
+  }
+  .matt-row {
+    @apply flex mb-2 justify-center
+  }
+  .field-signal {
+    @apply text-lg text-primary mr-2
+  }
+  #matt-fields-container {
+    @apply w-full overflow-auto border border-main-yellow p-2 bg-gray-200 min-h-2
+  }
+  .choose-container {
+    @apply flex justify-center mb-2
   }
   
 }

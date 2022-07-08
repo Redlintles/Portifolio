@@ -1,7 +1,7 @@
 import {elm,_Modal,BuildObj} from "./_meta";
 
 
-class Modal implements _Modal {
+export default class Modal implements _Modal {
   father: elm
   buildObj: BuildObj
   
@@ -30,7 +30,12 @@ class Modal implements _Modal {
       '<button class="modal-btn">Cancelar</button>'+
       '<button class="modal-btn">Concluído</button>'+
       '</div>'.repeat(3);
-      this.addEvents()
+      this.addEvents();
+      for(let i of this.buildObj.callWhile) {
+      console.log(i)
+        setInterval(i,this.buildObj.intervalWhile)
+        
+      };
   }   
   addEvents() {
     const closeBtn: elm = document.querySelector("button.modal-close-btn");
@@ -44,5 +49,3 @@ class Modal implements _Modal {
     }
   }
 }
-
-export default Modal

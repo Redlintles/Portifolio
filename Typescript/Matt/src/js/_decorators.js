@@ -1,11 +1,5 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateMult = exports.validateMattOps = exports.validateMattDet = exports.isNumberMatt = void 0;
-const _matt_1 = __importDefault(require("./_matt"));
-function isNumberMatt(matt) {
+import Matt from "./_matt";
+export function isNumberMatt(matt) {
     if (matt.isSet && matt.getElement(0, 0).type === "number") {
         return true;
     }
@@ -13,13 +7,12 @@ function isNumberMatt(matt) {
         return false;
     }
 }
-exports.isNumberMatt = isNumberMatt;
-function validateMattDet(n = 0) {
+export function validateMattDet(n = 0) {
     return function (target, key, descriptor) {
         const childFunction = descriptor.value;
         descriptor.value = function (...args) {
             for (let i of args) {
-                if (i instanceof _matt_1.default) {
+                if (i instanceof Matt) {
                     let tests = [
                         i.isSquare,
                         n ? n === i.rows && n === i.cols : true,
@@ -36,14 +29,13 @@ function validateMattDet(n = 0) {
         };
     };
 }
-exports.validateMattDet = validateMattDet;
-function validateMattOps() {
+export function validateMattOps() {
     return function (target, propertyKey, descriptor) {
         const childFunction = descriptor.value;
         descriptor.value = function (...args) {
             let list = [];
             for (let i of args) {
-                if (i instanceof _matt_1.default) {
+                if (i instanceof Matt) {
                     if (!(isNumberMatt(i))) {
                         throw new Error("Apenas Matrizes Numéricas são aceitas");
                     }
@@ -61,8 +53,7 @@ function validateMattOps() {
         };
     };
 }
-exports.validateMattOps = validateMattOps;
-function validateMult() {
+export function validateMult() {
     return function (target, propertyKey, descriptor) {
         const childFunction = descriptor.value;
         descriptor.value = function (...args) {
@@ -78,4 +69,3 @@ function validateMult() {
         };
     };
 }
-exports.validateMult = validateMult;

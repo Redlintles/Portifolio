@@ -1,11 +1,15 @@
 export type matt<T = any> = Array<T[]>;
 export type mapCallback = (scope: any[],index: number) => any[];
 export type elm = HTMLElement | null;
-
+export type inputElm = HTMLInputElement | null;
+type fn = (...args: any[]) => any
 
 export interface BuildObj {
   title: string
   innerCode: string
+  callWhile: fn[],
+  callBeforeClose: [],
+  intervalWhile: number
 }
 export interface _Modal {
   father: elm

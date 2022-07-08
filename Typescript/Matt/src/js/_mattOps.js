@@ -1,16 +1,11 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const _decorators_1 = require("./_decorators");
-const _matt_1 = __importDefault(require("./_matt"));
+import { validateMattOps, validateMult } from "./_decorators";
+import Matt from "./_matt";
 class MattOps {
     static sum(matt1, matt2) {
         const newMatt = [];
@@ -24,7 +19,7 @@ class MattOps {
                 operationRow.push(sum);
             }
         }
-        const resultMatt = new _matt_1.default(newMatt, true);
+        const resultMatt = new Matt(newMatt, true);
         return resultMatt;
     }
     static sub(matt1, matt2) {
@@ -39,7 +34,7 @@ class MattOps {
                 operationRow.push(sub);
             }
         }
-        const resultMatt = new _matt_1.default(newMatt, true);
+        const resultMatt = new Matt(newMatt, true);
         return resultMatt;
     }
     static mult(matt1, matt2) {
@@ -57,7 +52,7 @@ class MattOps {
                 newMatt[i].push(result);
             }
         }
-        const resultMatt = new _matt_1.default(newMatt, true);
+        const resultMatt = new Matt(newMatt, true);
         return resultMatt;
     }
     static div(matt1, matt2) {
@@ -81,7 +76,7 @@ class MattOps {
                 operationRow.push(n * -1);
             }
         }
-        const resultMatt = new _matt_1.default(newMatt, true);
+        const resultMatt = new Matt(newMatt, true);
         return resultMatt;
     }
     static createMatt(gen) {
@@ -120,7 +115,7 @@ class MattOps {
                 newMatt[i - 1].push(parseInt(eval(tpLaw)));
             }
         }
-        const resultMatt = new _matt_1.default(newMatt, true);
+        const resultMatt = new Matt(newMatt, true);
         return resultMatt;
     }
     static realMult(matt, n) {
@@ -131,7 +126,7 @@ class MattOps {
             });
             newMatt.push(newRow);
         }
-        const resultMatt = new _matt_1.default(newMatt, true);
+        const resultMatt = new Matt(newMatt, true);
         return resultMatt;
     }
     static amplify(matt1, matt2) {
@@ -147,21 +142,21 @@ class MattOps {
     }
 }
 __decorate([
-    (0, _decorators_1.validateMattOps)()
+    validateMattOps()
 ], MattOps, "sum", null);
 __decorate([
-    (0, _decorators_1.validateMattOps)()
+    validateMattOps()
 ], MattOps, "sub", null);
 __decorate([
-    (0, _decorators_1.validateMult)()
+    validateMult()
 ], MattOps, "mult", null);
 __decorate([
-    (0, _decorators_1.validateMult)()
+    validateMult()
 ], MattOps, "div", null);
 __decorate([
-    (0, _decorators_1.validateMattOps)()
+    validateMattOps()
 ], MattOps, "invert", null);
 __decorate([
-    (0, _decorators_1.validateMattOps)()
+    validateMattOps()
 ], MattOps, "realMult", null);
-exports.default = MattOps;
+export default MattOps;

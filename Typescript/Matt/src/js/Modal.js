@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Modal {
+export default class Modal {
     constructor(buildObj) {
         this.father = document.querySelector(".modal-container");
         this.buildObj = buildObj;
@@ -29,6 +27,11 @@ class Modal {
                 '<button class="modal-btn">Concluído</button>' +
                 '</div>'.repeat(3);
         this.addEvents();
+        for (let i of this.buildObj.callWhile) {
+            console.log(i);
+            setInterval(i, this.buildObj.intervalWhile);
+        }
+        ;
     }
     addEvents() {
         const closeBtn = document.querySelector("button.modal-close-btn");
@@ -40,4 +43,3 @@ class Modal {
         }
     }
 }
-exports.default = Modal;

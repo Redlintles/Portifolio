@@ -1,16 +1,11 @@
-"use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const _matt_1 = __importDefault(require("./_matt"));
-const _decorators_1 = require("./_decorators");
+import Matt from "./_matt";
+import { validateMattDet } from "./_decorators";
 class Det {
     static of2x2(matt) {
         //this.validate(matt,2);
@@ -100,7 +95,7 @@ class Det {
                 newMatt[n1].push(item - (marginX * marginY));
             }
         }
-        const resultMatt = new _matt_1.default(newMatt, true);
+        const resultMatt = new Matt(newMatt, true);
         if (resultMatt.rows > 3 && resultMatt.rows != matt.rows) {
             recursive = true;
         }
@@ -192,21 +187,21 @@ class Det {
     }
 }
 __decorate([
-    (0, _decorators_1.validateMattDet)(2)
+    validateMattDet(2)
 ], Det, "of2x2", null);
 __decorate([
-    (0, _decorators_1.validateMattDet)(3)
+    validateMattDet(3)
 ], Det, "of3x3", null);
 __decorate([
-    (0, _decorators_1.validateMattDet)()
+    validateMattDet()
 ], Det, "laPlace", null);
 __decorate([
-    (0, _decorators_1.validateMattDet)()
+    validateMattDet()
 ], Det, "chioRule", null);
 __decorate([
-    (0, _decorators_1.validateMattDet)()
+    validateMattDet()
 ], Det, "detTriangle", null);
 __decorate([
-    (0, _decorators_1.validateMattDet)()
+    validateMattDet()
 ], Det, "vander", null);
-exports.default = Det;
+export default Det;
