@@ -1,8 +1,8 @@
 import Matt from "./_matt";
 import {_Matt} from "./_meta";
 import Det from "./_det";
-import MattOps from "./_mattOps"
-
+import {MattOps} from "./_mattOps"
+/*
 const matt1: _Matt = new Matt(
   
   [
@@ -91,8 +91,8 @@ const matt9: _Matt = new Matt(
 );
 const matt10: _Matt = new Matt(
   
-  [
     [6,-4,8],
+  [
     [6,7,4]
   ],
     true
@@ -105,7 +105,7 @@ let matt12: _Matt = MattOps.createMatt({
   cols: 5,
   law: "(i*j)+i^2"
 })
-
+*/
 //matt12.print()
 /*
 matt9.print();
@@ -114,12 +114,14 @@ let matt13: _Matt = MattOps.div(matt9,matt10);
 matt13.print()
 */
 
-
+/*
 let det1: number = Det.laPlace(matt7);
 let det2: number = Det.chioRule(matt7);
 let det3: number = Det.detTriangle(matt7);
 let det4: number = Det.vander(matt7)
 matt7.print();
 
-console.log(det1,det2,det3,det4)
+//console.log(det1,det2,det3,det4)
+*/
+
 

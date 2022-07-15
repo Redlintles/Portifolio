@@ -2,8 +2,11 @@ function navListToggler() {
     const burgerMenu = document.querySelector("nav button.burger-menu");
     const navList = document.querySelector("nav ul.nav-list");
     if (burgerMenu && navList) {
-        burgerMenu.addEventListener("click", function () {
-            navList.classList.toggle("nav-list--visible");
+        burgerMenu.addEventListener("focus", function () {
+            navList.classList.add("nav-list--visible");
+        });
+        burgerMenu.addEventListener("blur", function () {
+            navList.classList.remove("nav-list--visible");
         });
     }
 }

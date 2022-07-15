@@ -6,7 +6,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { validateMattOps, validateMult } from "./_decorators";
 import Matt from "./_matt";
-class MattOps {
+export class MattOps {
     static sum(matt1, matt2) {
         const newMatt = [];
         for (let i = 0; i < matt1.rows; i++) {
@@ -159,4 +159,3 @@ __decorate([
 __decorate([
     validateMattOps()
 ], MattOps, "realMult", null);
-export default MattOps;

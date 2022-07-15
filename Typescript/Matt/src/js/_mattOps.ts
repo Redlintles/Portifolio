@@ -2,8 +2,7 @@ import {_Matt,matt,genLaw} from "./_meta";
 import {isNumberMatt,validateMattOps,validateMult} from "./_decorators";
 import Matt from "./_matt";
 
-
-class MattOps {
+export class MattOps {
   @validateMattOps()
   static sum(matt1: _Matt,matt2: _Matt):_Matt  {
     const newMatt: matt<number> = [];
@@ -163,4 +162,3 @@ class MattOps {
     
   }
 }
-export default MattOps

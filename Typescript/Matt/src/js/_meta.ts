@@ -1,19 +1,23 @@
 export type matt<T = any> = Array<T[]>;
 export type mapCallback = (scope: any[],index: number) => any[];
 export type elm = HTMLElement | null;
+export type elm2 = HTMLDivElement | null;
 export type inputElm = HTMLInputElement | null;
+export type intervalArr = Array<ReturnType<typeof setInterval>>;
 type fn = (...args: any[]) => any
 
 export interface BuildObj {
   title: string
-  innerCode: string
+  innerCode: Array<Node>
+  callBefore: fn[]
   callWhile: fn[],
-  callBeforeClose: [],
+  callAfterSuccess: fn[],
   intervalWhile: number
 }
 export interface _Modal {
   father: elm
   buildObj: BuildObj
+  timeouts: intervalArr
   builder(): void
   addEvents(): void
 }

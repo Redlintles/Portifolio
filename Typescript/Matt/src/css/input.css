@@ -164,16 +164,22 @@
     @apply flex justify-between px-4 py-2 border-t border-gray-300 h-2_12
   }
   .modal-btn {
-    @apply px-4 py-2 flex justify-center text-center bg-secondary text-sm text-main-yellow items-center font-semibold rounded-md border border-white focus:hover:bg-primary duration-500 focus:hover:text-white
+    @apply px-4 py-2 flex justify-center text-center bg-secondary text-sm text-main-yellow items-center font-semibold rounded-md border border-white duration-500
   }
-  .modal-input,.field-number{
+  .modal-field__input,.field-number{
     @apply outline-main-yellow border border-main-yellow bg-secondary rounded-sm text-main-yellow pl-2 font-semibold w-12
   }
-  .rc-input-container {
+  .modal-field{
     @apply flex justify-center mb-2
   }
-  .rc-label {
+  .modal-field__label {
     @apply text-primary font-bold mr-2 w-16
+  }
+  .btn-active {
+    @apply bg-primary text-white
+  }
+  .modal-btn:not(.choose-container .modal-btn) {
+    @apply focus:hover:bg-primary focus:hover:text-white
   }
   .raw-field {
     @apply flex mr-1
