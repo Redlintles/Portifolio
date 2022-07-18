@@ -169,6 +169,9 @@
   .modal-field__input,.field-number{
     @apply outline-main-yellow border border-main-yellow bg-secondary rounded-sm text-main-yellow pl-2 font-semibold w-12
   }
+  .modal-field--long > .modal-field__input{
+    @apply w-32
+  }
   .modal-field{
     @apply flex justify-center mb-2
   }

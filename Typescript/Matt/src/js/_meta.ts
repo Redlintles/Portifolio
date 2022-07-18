@@ -1,7 +1,6 @@
 export type matt<T = any> = Array<T[]>;
 export type mapCallback = (scope: any[],index: number) => any[];
 export type elm = HTMLElement | null;
-export type elm2 = HTMLDivElement | null;
 export type inputElm = HTMLInputElement | null;
 export type intervalArr = Array<ReturnType<typeof setInterval>>;
 type fn = (...args: any[]) => any
@@ -15,10 +14,11 @@ export interface BuildObj {
   intervalWhile: number
 }
 export interface _Modal {
-  father: elm
-  buildObj: BuildObj
+  modalID: string
+  config: BuildObj
   timeouts: intervalArr
-  builder(): void
+  modal: HTMLElement
+  builder(): HTMLElement
   addEvents(): void
 }
 

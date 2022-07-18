@@ -1,34 +1,12 @@
-import Modal from "./Modal";
-import {elm,inputElm,matt,genLaw as genLawObj,_Matt} from "./_meta";
-import {rawMattCode,rawGenLawCode,chooseCode} from "./modal-components";
-let old: [number,number];
+import {elm,inputElm,matt,genLaw,_Matt} from "./_meta";
+import Modal from "./Modal.js"
+import {chooseCode,rawMattCode,rawGenLawCode,rawField,positiveIcon,negativeIcon} from "./modal-components.js";
+import Matt from "./_matt.js";
+import {createMatt} from "./_mattOps.js";
 
-const positiveIcon: string = '<i class="fas fa-plus"></i>';
-const negativeIcon: string = '<i class="fas fa-minus"></i>';
-function rawField():string {
-  return ""+
-  '<div class="raw-field">'+
-  '<button class="field-signal">'+
-  positiveIcon+
-  '</button>'+
-  '<input type="number" class="field-number">'+
-  '</div>'
-}
-function signalEventApplier():void{
-  const signalBtnList = document.querySelectorAll(".field-signal");
-  if(signalBtnList) {
-    signalBtnList.forEach(function(i){
-      i.addEventListener("click",function(){
-        let ch = i.innerHTML;
-        if(ch === positiveIcon && ch) {
-          i.innerHTML = negativeIcon;
-        } else if(ch) {
-          i.innerHTML = positiveIcon;
-        }
-      })
-    })
-  }
-}
+let old: [number,number];
+let globalMatt: _Matt;
+
 function chooseCodeEvents():void {
   const chooseContainer:elm = document.querySelector(".choose-container");
   const modalBody:elm= document.querySelector(".modal-body")
@@ -65,31 +43,6 @@ function chooseCodeEvents():void {
     });
   }
 }
-function updateFields():void {
-  const rows: inputElm = document.querySelector("#rows-field");
-  const cols: inputElm = document.querySelector("#cols-field");
-  const mattFieldsContainer: elm = document.querySelector("#matt-fields-container");
-  let result: string = ""
-  if(rows && cols && mattFieldsContainer) {
-    let double: [number,number] = [parseInt(rows.value),parseInt(cols.value)]
-    if(old && old[0]===double[0] && old[1]===double[1]) {
-      return
-    }
-    for(let i=0; i< double[0];i++) {
-      result+= '<div class="matt-row">'
-      for(let j=0; j<double[1]; j++) {
-        result+= rawField();
-      }
-      result+="</div>"
-    }
-    mattFieldsContainer.innerHTML = result
-    old = double;
-    signalEventApplier()
-  }
-}
-function lawMattParser():void {}
-function rawMattParser():void {}
-/*
 function rawMattParser():void {
   const rawBtn: elm = document.querySelector("#raw-btn");
   const mattContainer = document.querySelector("#matt-fields-container");
@@ -101,25 +54,25 @@ function rawMattParser():void {
       rows.forEach(function(i){
         const fields = i.querySelectorAll(".raw-field");
         newMatt.push([]);
-        
         if(fields) {
-        for(let j of fields) {
-        const signal: elm = j.querySelector(".field-signal");
-        const input: inputElm = j.querySelector(".field-number");
-        if(signal && input) {
-          let val = parseInt(input.value);
-          if(signal.innerHTML === positiveIcon) {
-            newMatt[iter].push(val);
-          } else {
-          newMatt[iter].push(val*(-1));
+          for(let j of fields) {
+            const signal: elm = j.querySelector(".field-signal");
+            const input: inputElm = j.querySelector(".field-number");
+            if(signal && input) {
+              let val = parseInt(input.value);
+              if(signal.innerHTML === positiveIcon) {
+                newMatt[iter].push(val);
+              } else {
+                newMatt[iter].push(val*(-1));
+              }
+            }
+          }
         }
-        }
-      }
-    }
         iter++;
       });
+      globalMatt = new Matt(newMatt,true);
+      console.log(globalMatt)
     }
-    
   }
 }
 function lawMattParser():void {
@@ -127,41 +80,76 @@ function lawMattParser():void {
   const rowsField: inputElm = document.querySelector("#rows-field");
   const colsField: inputElm = document.querySelector("#cols-field");
   const genLawField: inputElm = document.querySelector("#genlaw-field");
-  if(lawBtn) {
-    console.log(lawBtn);
-    console.log(lawBtn.classList.contains("btn-active"));
-  }
   if(colsField) {console.log(colsField)};
   if(rowsField) {console.log(rowsField)};
   if(genLawField) {console.log(genLawField)};
   if(lawBtn && lawBtn.classList.contains("btn-active") && rowsField && colsField && genLawField) {
-    const g1: genLawObj = {
+    const g1: genLaw = {
       rows: parseInt(rowsField.value),
       cols: parseInt(colsField.value),
       law: genLawField.value
     };
-    console.log(g1)
+    globalMatt = createMatt(g1);
+    globalMatt.print()
   }
 }
-*/
+
+
+function signalEventApplier():void{
+  const signalBtnList = document.querySelectorAll(".field-signal");
+  if(signalBtnList) {
+    signalBtnList.forEach(function(i){
+      i.addEventListener("click",function(){
+        let ch = i.innerHTML;
+        if(ch === positiveIcon && ch) {
+          i.innerHTML = negativeIcon;
+        } else if(ch) {
+          i.innerHTML = positiveIcon;
+        }
+      })
+    })
+  }
+}
+function updateFields():void {
+  const rows: inputElm = document.querySelector("#rows-field");
+  const cols: inputElm = document.querySelector("#cols-field");
+  const mattFieldsContainer: elm = document.querySelector("#matt-fields-container");
+  const result = document.createElement("div");
+  if(rows && cols && mattFieldsContainer) {
+    let double: [number,number] = [parseInt(rows.value),parseInt(cols.value)]
+    if(old && old[0]===double[0] && old[1]===double[1]) {
+      return
+    }
+    for(let i=0; i< double[0];i++) {
+      const row = document.createElement("div");
+      row.classList.add("matt-row")
+      for(let j=0; j<double[1]; j++) {
+        row.append(rawField());
+      }
+      result.append(row)
+    }
+    mattFieldsContainer.innerHTML = "";
+    mattFieldsContainer.append(result)
+    old = double;
+    signalEventApplier()
+  }
+}
 function newMattModal():void {
-  const addBtn: elm = document.querySelector(".result__plus-btn");
+  const addBtn = document.querySelector(".result__plus-btn");
   
   if(addBtn) {
     addBtn.addEventListener("click", function(){
-      
-    const modal = new Modal
-      ({
-        title: "Criar uma Nova Matriz",
-        innerCode: [chooseCode(),rawMattCode()],
-        callBefore: [chooseCodeEvents],
-        callWhile: [updateFields],
-        callAfterSuccess: [],//[rawMattParser,lawMattParser],
-        intervalWhile: 2000
-      });
-    });
+      const modal = new Modal
+        ("modal-1",{
+          title: "Criar uma Nova Matriz",
+          innerCode: [chooseCode(),rawMattCode()],
+          callBefore: [chooseCodeEvents],
+          callWhile: [updateFields],
+          callAfterSuccess: [rawMattParser,lawMattParser],
+          intervalWhile: 2000
+        });
+      }
+    );
   };
 }
-document.addEventListener("DOMContentLoaded",newMattModal);
-
-
+newMattModal()

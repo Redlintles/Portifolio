@@ -1,47 +1,39 @@
-import {elm,elm2,_Modal,BuildObj,intervalArr} from "./_meta";
+import {elm,BuildObj,intervalArr,_Modal} from "./_meta";
 
-function modalHeader(title: string){
-  let div: elm = document.createElement("div");
+function modalHeader(title: string):Node{
+  const div = document.createElement("div");
   div.classList.add("modal-header");
-  let header: elm = document.createElement("h6");
+  const header = document.createElement("h6");
   header.classList.add("modal-title")
   header.innerText = title
-  let button:elm = document.createElement("button");
+  const button = document.createElement("button");
   button.classList.add("modal-close-btn");
-  let icon: elm = document.createElement("i");
+  let icon = document.createElement("i");
   icon.classList.add("fas","fa-xmark");
   button.appendChild(icon);
-  div.appendChild(header);
-  div.appendChild(button);
+  div.append(header,button)
   return div
 }
-function modalBody(content: Array<Node>) {
-  let div: elm = document.createElement("div");
+function modalBody(content: Array<Node>):Node{
+  const div = document.createElement("div");
   div.classList.add("modal-body");
-  for(let i of content) {
-    if(i) {
-      div.appendChild(i);
-    }
-  }
+  div.append(...content);
   return div
 }
-function modalFooter() {
-  let div: elm = document.createElement("div");
+function modalFooter():Node {
+  const div = document.createElement("div");
   div.classList.add("modal-footer")
-  let btn1: elm = document.createElement("button");
-  let btn2: elm = document.createElement("button");
-  btn1.classList.add("modal-btn");
+  const btn1 = document.createElement("button");
+  const btn2 = document.createElement("button");
+  btn1.classList.add("modal-btn","cancel-btn");
   btn1.innerText = "Cancelar";
-  btn1.setAttribute("id","cancel-btn");
-  btn2.classList.add("modal-btn");
+  btn2.classList.add("modal-btn","success-btn");
   btn2.innerText = "Concluído";
-  btn2.setAttribute("id","success-btn");
-  div.appendChild(btn1);
-  div.appendChild(btn2);
+  div.append(btn1,btn2)
   return div;
 }
-
-export default class Modal implements _Modal {
+/*
+export class Modal implements _Modal {
   father: elm
   buildObj: BuildObj
   timeouts: intervalArr
@@ -55,9 +47,9 @@ export default class Modal implements _Modal {
   }
   builder() {
     if(!(this.father)) {return}
-    let modal: elm = document.createElement("div");
+    let modal = document.createElement("div");
     modal.classList.add("modal")
-    let content: elm = document.createElement("div");
+    let content= document.createElement("div");
     content.classList.add("modal-content");
     content.appendChild(modalHeader(this.buildObj.title));
     content.appendChild(modalBody(this.buildObj.innerCode))
@@ -101,8 +93,87 @@ export default class Modal implements _Modal {
         father.innerHTML = "";
         stopWhileFns();
       })
-      
-      
+    }
+  }
+}
+*/
+
+
+export default class Modal implements  _Modal{
+  modalID: string
+  config: BuildObj
+  timeouts: intervalArr
+  modal: HTMLElement
+  constructor(modalID: string, config:BuildObj){
+    this.modalID = modalID
+    this.config = config
+    this.timeouts = []
+    this.modal =  this.builder();
+  }
+  builder(): HTMLElement {
+    const body = document.body;
+    const modal = document.createElement("div");
+    modal.setAttribute("id",this.modalID)
+    modal.classList.add("modal");
+    const mContent = document.createElement("div");
+    mContent.classList.add("modal-content");
+    mContent.append(
+      modalHeader(this.config.title),
+      modalBody(this.config.innerCode),
+      modalFooter()
+    );
+    modal.append(mContent);
+    body.append(modal);
+    this.addEvents()
+    this.addEvents()
+    for(let i of this.config.callBefore){
+      i()
+    }
+    for(let i of this.config.callWhile) {
+      this.timeouts.push(setInterval(i,this.config.intervalWhile));
+    }
+    return modal
+  }
+  addEvents():void {
+    const closer = document.querySelectorAll(".modal-close-btn");
+    if(closer) {
+      closer.forEach((i)=>{
+        i.addEventListener("click",()=>{
+          console.log(this.modal)
+          if(this.modal) {
+            fn()
+            
+            this.modal.remove()
+          }
+        });
+      })
+    }
+    const fn = () => {
+      for(let i of this.timeouts) {
+        clearInterval(i)
+      }
+    }
+    const cancel = document.querySelectorAll(".cancel-btn");
+    if(cancel) {
+      cancel.forEach((i)=>{
+        i.addEventListener("click",() => {
+            fn();
+            this.modal.remove();
+          }
+        )}
+      );
+    };
+    const success = document.querySelectorAll(".success-btn");
+    if(success) {
+      success.forEach((i)=>{
+        i.addEventListener("click",()=>{
+          fn()
+          for(let i of this.config.callAfterSuccess) {
+            i()
+          }
+          this.modal.remove();
+        })
+      });
     }
   }
 }

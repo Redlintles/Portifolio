@@ -1,96 +1,7 @@
-import {_Matt,matt,genLaw} from "./_meta";
-import {isNumberMatt,validateMattOps,validateMult} from "./_decorators";
-import Matt from "./_matt";
-
-export class MattOps {
-  @validateMattOps()
-  static sum(matt1: _Matt,matt2: _Matt):_Matt  {
-    const newMatt: matt<number> = [];
-    for(let i=0; i<matt1.rows;i++) {
-      newMatt.push([])
-      const row1:number[] = matt1.matt[i];
-      const row2:number[] = matt2.matt[i];
-      
-      for(let j=0;j<row1.length;j++) {
-        const operationRow = newMatt[i];
-        const sum: number = row1[j]+row2[j];
-        operationRow.push(sum);
-      }
-    }
-    const resultMatt: _Matt = new Matt(newMatt,true);
-    return resultMatt;
-  }
-  @validateMattOps()
-  static sub(matt1: _Matt,matt2: _Matt):_Matt  {
-    const newMatt: matt<number> = [];
-    for(let i=0; i<matt1.rows;i++) {
-      newMatt.push([])
-      const row1:number[] = matt1.matt[i];
-      const row2:number[] = matt2.matt[i];
-      
-      for(let j=0;j<row1.length;j++) {
-        const operationRow = newMatt[i];
-        const sub: number = row1[j]-row2[j];
-        operationRow.push(sub);
-      }
-    }
-    const resultMatt = new Matt(newMatt,true)
-    
-    return resultMatt;
-  }
-  @validateMult()
-  static mult(matt1: _Matt,matt2: _Matt):_Matt  {
-    const newMatt: matt<number> = [];
-    for(let i=0;i<matt1.rows;i++) {
-      const targetRow: number[] = matt1.getRow(i);
-      newMatt.push([]);
-      for(let j=0; j< matt2.cols; j ++) {
-        const row: number[] = [];
-        const targetCol: number[] = matt2.getCol(j);
-        for(let k in targetRow) {
-          row.push(targetRow[k]*targetCol[k])
-        }
-        const result: number = row.reduce((acc,crr)=>{return acc+crr})
-        newMatt[i].push(result)
-      }
-    }
-    const resultMatt = new Matt(newMatt,true)
-    
-    return resultMatt;
-  }
-  @validateMult()
-  static div(matt1: _Matt,matt2: _Matt): _Matt {
-    const inverted: _Matt = this.invert(matt2);
-    
-    return this.mult(matt1,inverted);
-  }
-  static pow(matt: _Matt,exp: number): _Matt {
-    const arr: Array<_Matt> = Array.from({length: exp-1}, (v,k)=>{return matt.copy()})
-    
-    const resultMatt: _Matt = arr.reduce((acc,crr)=>{
-      return this.mult(acc,crr)
-    },arr[0]);
-    
-    return resultMatt;
-  }  
-  @validateMattOps()
-  static invert(matt: _Matt): _Matt {
-    const newMatt: matt<number> = [];
-    
-    for(let i = 0; i < matt.rows; i++) {
-      newMatt.push([]);
-      for(let j=0; j < matt.matt[i].length; j++) {
-        const operationRow = newMatt[i];
-        const n: number = matt.matt[i][j];
-        operationRow.push(n*-1);
-      }
-    }
-    const resultMatt = new Matt(newMatt,true)
-    
-    return resultMatt;
-    
-  }
-  static createMatt(gen: genLaw): _Matt {
+import {matt,genLaw,_Matt} from "./_meta";
+import Matt from "./_matt.js";
+import {validateMattOps,validateMult} from "./_validations.js"
+function createMatt(gen: genLaw): _Matt {
     const newMatt: matt<number> = [];
     const alpha: string[] = []
     
@@ -134,9 +45,44 @@ export class MattOps {
     
     const resultMatt: _Matt = new Matt(newMatt,true)
     return resultMatt;
+};
+function sum(matt1: _Matt,matt2: _Matt):_Matt  {
+    validateMattOps (Array.from(arguments))
+    const newMatt: matt<number> = [];
+    for(let i=0; i<matt1.rows;i++) {
+      newMatt.push([])
+      const row1:number[] = matt1.matt[i];
+      const row2:number[] = matt2.matt[i];
+      
+      for(let j=0;j<row1.length;j++) {
+        const operationRow = newMatt[i];
+        const sum: number = row1[j]+row2[j];
+        operationRow.push(sum);
+      }
+    }
+    const resultMatt: _Matt = new Matt(newMatt,true);
+    return resultMatt;
+  };
+function sub(matt1: _Matt,matt2: _Matt):_Matt  {
+    validateMattOps (Array.from(arguments))
+    const newMatt: matt<number> = [];
+    for(let i=0; i<matt1.rows;i++) {
+      newMatt.push([])
+      const row1:number[] = matt1.matt[i];
+      const row2:number[] = matt2.matt[i];
+      
+      for(let j=0;j<row1.length;j++) {
+        const operationRow = newMatt[i];
+        const sub: number = row1[j]-row2[j];
+        operationRow.push(sub);
+      }
+    }
+    const resultMatt = new Matt(newMatt,true)
+    
+    return resultMatt;
   }
-  @validateMattOps()
-  static realMult(matt: _Matt, n: number):_Matt{
+function realMult(matt: _Matt, n: number):_Matt{
+    validateMattOps (Array.from(arguments));
     const newMatt: matt<number> = [];
     
     for(let i of matt.matt) {
@@ -149,7 +95,24 @@ export class MattOps {
     const resultMatt: _Matt = new Matt(newMatt,true)
     return resultMatt;
   }
-  static amplify(matt1:_Matt,matt2:_Matt):_Matt{
+function invert(matt: _Matt): _Matt {
+    validateMattOps (Array.from(arguments));
+    const newMatt: matt<number> = [];
+    
+    for(let i = 0; i < matt.rows; i++) {
+      newMatt.push([]);
+      for(let j=0; j < matt.matt[i].length; j++) {
+        const operationRow = newMatt[i];
+        const n: number = matt.matt[i][j];
+        operationRow.push(n*-1);
+      }
+    }
+    const resultMatt = new Matt(newMatt,true)
+    
+    return resultMatt;
+    
+  }
+function amplify(matt1:_Matt,matt2:_Matt):_Matt{
     if(matt1.rows !== matt2.rows) {
       throw new Error("As matrizes precisam ter o mesmo número de linhas!")
     }
@@ -161,4 +124,49 @@ export class MattOps {
     return mattCopy;
     
   }
+function pow(matt: _Matt,exp: number): _Matt {
+  validateMattOps (Array.from(arguments));
+    const arr: Array<_Matt> = Array.from({length: exp-1}, (v,k)=>{return matt.copy()})
+    
+    const resultMatt: _Matt = arr.reduce((acc,crr)=>{
+      return mult(acc,crr)
+    },arr[0]);
+    
+    return resultMatt;
+  }  
+function mult(matt1: _Matt,matt2: _Matt):_Matt  {
+    validateMult(Array.from(arguments));
+    const newMatt: matt<number> = [];
+    for(let i=0;i<matt1.rows;i++) {
+      const targetRow: number[] = matt1.getRow(i);
+      newMatt.push([]);
+      for(let j=0; j< matt2.cols; j ++) {
+        const row: number[] = [];
+        const targetCol: number[] = matt2.getCol(j);
+        for(let k in targetRow) {
+          row.push(targetRow[k]*targetCol[k])
+        }
+        const result: number = row.reduce((acc,crr)=>{return acc+crr})
+        newMatt[i].push(result)
+      }
+    }
+    const resultMatt = new Matt(newMatt,true)
+    
+    return resultMatt;
+  };
+function div(matt1: _Matt,matt2: _Matt): _Matt {
+    const inverted: _Matt = invert(matt2);
+    
+    return mult(matt1,inverted);
+  }
+export {
+  sum,
+  sub,
+  realMult,
+  invert,
+  amplify,
+  pow,
+  mult,
+  div,
+  createMatt,
 }
